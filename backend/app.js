@@ -4,7 +4,8 @@ const app = express();
 const port = process.env.PORT || 7000;
 const { default: mongoose } = require('mongoose');
 const cors = require("cors");
-
+const auth = require("./src/routers/auth")
+const events = require("./src/routers/events")
 app.use(cors({
     origin:"http://localhost:5173",
     methods:["POST", "GET", "PATCH", "PUT", "DELETE"],
@@ -26,7 +27,8 @@ app.use(function (req, res, next) {
         console.log("Data base have been connected...")
     }).catch((error)=>console.log(error))
 
-
+app.use(auth);
+app.use(events);
 app.get("",(req,res)=>{
     try {
         res.send("Hello My name is shreyash jain...")
