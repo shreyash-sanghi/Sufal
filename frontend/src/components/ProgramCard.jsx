@@ -6,13 +6,13 @@ const Card = ({ title, description, icon, color, href }) => {
 	return (
 		<div className="flex flex-col items-center justify-center space-y-4 px-6 py-4  rounded-2xl cursor-pointer hover:shadow-xl  transition-shadow duration-200 ">
 			<div
-				className="w-fit flex items-center justify-center rounded-full p-4"
+				className="w-fit flex items-center justify-center rounded-full p-2"
 				style={{ backgroundColor: color }}
 			>
 				<span>{icon}</span>
 			</div>
-			<div className="text-3xl font-bold text-center">{title}</div>
-			<div className="text-base font-medium text-center text-[#868686] w-full md:w-[60%] selection:text-[#16191E]">
+			<div className="text-2xl font-bold text-center">{title}</div>
+			<div className="text-base line-clamp-3 font-medium text-center text-[#868686] w-full md:w-[95%] selection:text-[#16191E]">
 				{description}
 			</div>
 			<Link
@@ -22,7 +22,7 @@ const Card = ({ title, description, icon, color, href }) => {
 				<Button
 					message="Read More"
 					icon={<FiArrowUpRight />}
-					className="px-6 py-3 rounded-xl text-[#0a7558] "
+					className="px-6 py-1 rounded-xl text-[#0a7558] "
 					text={true}
 					href={href}
 				/>

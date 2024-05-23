@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { colorTheme } from '../constants/colorTheme';
+import herogif from '../assets/herogif4.mp4';
 import Button from '../components/Button';
+import { GrUserExpert } from "react-icons/gr";
+
 import {
 	IoLogoInstagram,
 	IoLogoLinkedin,
 	IoPlayOutline,
 } from 'react-icons/io5';
 import { PiBowlFood, PiHandHeartFill } from 'react-icons/pi';
+import { MdOutlineSupportAgent } from "react-icons/md";
+
 import { LuHeartHandshake } from 'react-icons/lu';
 import { FiArrowRight, FiArrowUpRight } from 'react-icons/fi';
 import { GiMedicines } from 'react-icons/gi';
@@ -25,6 +30,9 @@ import {
 } from '../components/ui/carousel';
 import TeamCard from '../components/TeamCard';
 import EventCard from '../components/EventCard';
+import aboutimg from '../assets/about-img2.png';
+import { ImWoman } from "react-icons/im";
+
 
 const Info = ({ title, description }) => {
 	return (
@@ -78,21 +86,20 @@ const Home = () => {
 		<div className="w-full bg-[#fefaf6] ">
 			<div
 				id="home"
-				className="max-w-7xl mx-auto px-3 py-6 flex flex-col lg:flex-row items-center justify-between"
+				className="max-w-7xl lg:mt-10 mx-auto px-3 py-6 flex flex-col lg:flex-row items-center justify-between"
 			>
-				<div className="w-full lg:w-1/2 space-y-5 flex flex-col items-center justify-start mx-auto	selection:bg-[#0a755862]">
+				<div className="w-full lg:w-1/2 mt-6 md:mt-0 space-y-5 flex flex-col items-center justify-start mx-auto	selection:bg-[#0a755862]">
 					<div className="w-full flex flex-col items-start justify-start space-y-3">
-						<span className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight ">
-							Do Something Great To Help Others
+						<span className="text-4xl md:text-5xl lg:text-6xl font-bold ">
+							Embrace <br /> Motherhood <br /> Joyfully With Sufal
 						</span>
-						<span className="w-full md:w-[90%] lg:w-[80%] flex items-center justify-start text-base font-semibold text-[#868686] selection:text-[#16191E]">
-							SomboHelp is a digital platform for collecting
-							donations to be distributed to people in need.
+						<span className="w-full md:w-[90%] lg:w-[80%] flex items-center justify-start pt-4 text-base font-semibold text-[#868686] selection:text-[#16191E]">
+						Join Our Pregnancy Support Group: Share, Learn, and Nurture Your Unborn Child Together!
 						</span>
 					</div>
 					<div className="w-full flex items-center justify-start md:space-x-4 pt-5 gap-3">
 						<Button
-							message="Donate Now"
+							message="Join Now"
 							className="px-3 sm:px-6 py-3 rounded-xl bg-[#0a7558]"
 						/>
 						<button className="flex items-center justify-center gap-2 border border-[#0a7558] text-[#0a7558] text-center font-semibold px-3 sm:px-6 py-3 rounded-xl">
@@ -102,60 +109,70 @@ const Home = () => {
 							Watch Video
 						</button>
 					</div>
-					<div className="w-fit sm:w-full flex items-start justify-start pt-5 ">
+					<div className="w-fit sm:w-full px-2 md:px-0 flex items-start gap-x-2 md:gap-x-0 justify-start pt-5 ">
 						<Info
-							title={'15K'}
+							title={'150+'}
 							description={'Incredible Volunteers'}
 						/>
 						<Info
-							title={'100+'}
-							description={'Successful Campaigns'}
+							title={'120+'}
+							description={'Successful Events'}
 						/>
 						<Info
-							title={'600+'}
-							description={'Monthly Donors'}
+							title={'3000+'}
+							description={'Total Attendes'}
 						/>
 					</div>
+					
 				</div>
-				<div className="w-full lg:w-1/2 mt-8 lg:mt-0 flex items-center justify-center">
-					<img
-						src="https://res.cloudinary.com/photo-manager/image/upload/v1716097347/e2l7qvlnlyho9ldueert.png"
+				<div className="w-full lg:w-1/2 mt-8 lg:mt-0 px-4 md:px-0 flex items-center justify-center">
+					<video
+						src={herogif}
 						alt="Pattern"
-						className="w-full h-auto object-cover rounded-lg"
+						className="w-full h-auto  rounded-lg"
+						playsInline={true}
+						autoPlay={true}
+						loop={true}
 						draggable={false}
 					/>
 				</div>
 			</div>
 			<div
 				id="about-us"
-				className="max-w-7xl mx-auto px-5 pt-12 flex flex-col-reverse lg:flex-row items-start justify-between selection:bg-[#0a755862]"
+				className="max-w-7xl mx-auto px-5 pt-12 flex flex-col-reverse lg:flex-row rounded-xl items-start justify-between bg-white"
 			>
-				<div className="w-full lg:w-1/2 mt-8 lg:mt-0 flex items-center justify-center  pb-10">
+				<div className="w-full lg:w-3/7 mt-8 lg:mt-0 flex items-center justify-center  pb-10">
 					<img
-						src="https://res.cloudinary.com/photo-manager/image/upload/v1716051729/okwldlpvalbdooec78es.png"
+						src={aboutimg}
 						alt="Pattern"
 						className="w-full h-auto object-cover rounded-lg"
 						draggable={false}
 					/>
 				</div>
-				<div className="w-full lg:w-1/2 flex flex-col items-start justify-start pb-10 lg:pl-10 space-y-6">
-					<span className="text-2xl font-medium text-[#fbd066]">
+				<div className="w-full lg:w-4/7 flex flex-col items-start justify-start pb-10 lg:pl-10 space-y-6">
+					<span className="text-2xl font-medium text-[#f7c957]">
 						ABOUT US
 					</span>
 					<div className="w-full flex flex-col items-start justify-start space-y-3 pb-5">
 						<span className="text-4xl md:text-5xl font-semibold leading-tight">
-							Helping People In Need Around The World
+						Nurturing Healthy Pregnancies: Your Journey, Our Support.
 						</span>
 						<span className="w-full text-base font-semibold text-[#868686] selection:text-[#16191E]">
-							We help provide necessities to help people in need
-							around the world.
+						We provide essential support to expectant mothers worldwide.
+
+
+
+
+
+
+
 						</span>
 					</div>
 					<div className="w-full flex flex-col items-start justify-start gap-5">
 						<InfoCard
-							title={'Donate'}
+							title={'Healthy Pregnancies'}
 							description={
-								'Providing assistance in the form of money and clothing to help others.'
+								'Ensuring a healthy pregnancy through comprehensive support, resources, and care for expectant mothers.'
 							}
 							icon={
 								<PiHandHeartFill
@@ -166,9 +183,9 @@ const Home = () => {
 							color={'#fee0ea'}
 						/>
 						<InfoCard
-							title={'Volunteer'}
+							title={'Pre Pregnancy Care'}
 							description={
-								'Providing assistance in the form of time, skills and knowledge to help others'
+								'Offering guidance, education, and support for women preparing for a healthy pregnancy journey.'
 							}
 							icon={
 								<LuHeartHandshake
@@ -178,29 +195,40 @@ const Home = () => {
 							}
 							color={'#fef3d7'}
 						/>
+						<InfoCard
+							title={'Support Assistance'}
+							description={
+								'Providing emotional and practical support to ensure the well-being of pregnant women and new mothers.'
+							}
+							icon={
+								<MdOutlineSupportAgent size={24} color={"#7CB9E8"} />
+
+							}
+							color={'#F0F8FF'}
+						/>
 					</div>
 				</div>
 			</div>
 			<div
 				id="categories"
-				className="max-w-7xl mx-auto px-5 pt-6 flex flex-col items-start justify-start selection:bg-[#0a755862]"
+				className="max-w-7xl mx-auto px-5 md:px-0 pt-6 flex flex-col items-start justify-start selection:bg-[#0a755862]"
 			>
 				<div className="w-full flex flex-col items-center justify-center space-y-4">
 					<span className="text-3xl font-medium text-[#fbd066]">
-						CATEGORIES
+						SERVICES
 					</span>
-					<span className="text-3xl md:text-4xl lg:text-5xl font-semibold text-[#16191E] ">
-						Program to Empower Others
+					<span className="text-3xl md:text-4xl text-center md:text-start lg:text-5xl font-semibold text-[#16191E] ">
+						Empowering Beloved Mothers !
 					</span>
 				</div>
-				<div className="w-full grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-4 items-center justify-center gap-2 md:gap-4 mt-8">
+				<div className="w-full grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-5 items-center justify-center gap-2 md:gap-4 mt-8">
 					<Card
-						title={'Healthy Food'}
+						title={'Yoga Experts'}
 						description={
-							'Donate to charity for those who need healthy and nutritious food.'
+							'Guidance on prenatal yoga for a healthy and balanced pregnancy.'
 						}
 						icon={
-							<PiBowlFood
+							<ImWoman
 								size={44}
 								color={'#fbd066'}
 							/>
@@ -208,9 +236,22 @@ const Home = () => {
 						color={'#fef3d7'}
 					/>
 					<Card
-						title={'Medical Help'}
+						title={'Dietician'}
 						description={
-							'Donate to charity for those who need better medical care.'
+							'Personalized nutrition plans to support a healthy journey.'
+						}
+						icon={
+							<PiBowlFood
+								size={44}
+								color={'#009F6B'}
+							/>
+						}
+						color={'#D0F0C0'}
+					/>
+					<Card
+						title={'Physcologists'}
+						description={
+							'Mental health support and counseling for expectant mothers.'
 						}
 						icon={
 							<GiMedicines
@@ -221,39 +262,37 @@ const Home = () => {
 						color={'#e0ecfe'}
 					/>
 					<Card
-						title={'Social Service'}
+						title={'Feeding Experts'}
 						description={
-							'Support charitable causes to help people in need around the world.'
+							'Expert advice on breastfeeding and infant nutrition.'
 						}
 						icon={
-							<BsPeopleFill
+							<GrUserExpert
 								size={44}
 								color={'#593ff9'}
+								className='p-1'
 							/>
 						}
 						color={'#e4e0fe'}
 					/>
 					<Card
-						title={'Education'}
+						title={'Sound Therapy'}
 						description={
-							'Donating to charity for children who need quality education.'
+							'Relaxation and stress relief through prenatal sound therapy.'
 						}
 						icon={
 							<FaBookOpenReader
 								size={44}
 								color={'#f93f80'}
+								className='p-1'
 							/>
 						}
 						color={'#fee0ea'}
 					/>
 				</div>
 			</div>
-			<div className="max-w-7xl mx-auto px-5 pt-6 flex flex-col items-start justify-start selection:bg-[#0a755862] gap-5">
-				{/* <div className="w-full flex items-center justify-start gap-5 ">
-					<span className="text-3xl md:text-5xl font-semibold text-[#16191E]">
-						Our Team
-					</span>
-				</div> */}
+			{/* <div className="max-w-7xl mx-auto px-5 pt-6 flex flex-col items-start justify-start selection:bg-[#7fe0c662] gap-5">
+				
 
 				<div className="w-full flex flex-col items-center justify-center py-4">
 					<div className="relative w-full h-[21rem] sm:h-[22rem] md:h-72 flex items-center justify-start md:rounded-r-full bg-[#0a7558] rounded-lg py-10		 lg:py-0">
@@ -294,17 +333,18 @@ const Home = () => {
 					</div>
 				</div>
 
-				{/*  */}
-			</div>
+				
+			</div> */}
 			{/*  */}
 			<div
 				id="upcoming-events"
-				className="w-full max-w-7xl mx-auto px-3 pt-14 pb-16 selection:bg-[#0a755862]"
+				className="w-full max-w-7xl mx-auto px-3 pt-14 pb-16 bg-white"
 			>
-				<div className="w-full flex items-center justify-start gap-5 mb-4 lg:mb-8">
-					<span className="text-2xl md:text-3xl font-semibold text-[#16191E]">
-						Upcoming Events
+				<div className="w-full flex flex-col mb-2 items-center justify-center">
+					<span className="text-4xl font-medium text-[#f9c950]">
+						Upcoming Events 
 					</span>
+					
 				</div>
 				<Carousel
 					orientation="horizontal"
@@ -316,72 +356,39 @@ const Home = () => {
 					className="w-full"
 				>
 					<CarouselContent className="w-full  mx-auto py-5">
-						<CarouselItem className="px-5 basic-0  md:basis-1/2 lg:basis-1/3">
+						{/* <CarouselItem className="px-5 mx-auto basic-0  md:basis-1/2 lg:basis-1/3">
 							<EventCard
-								eventTitle="Blood Donation Camp"
-								eventDescription="Blood Donation Camp"
+								eventTitle="Sound Therapy Masterclass "
+								eventDescription="Sound Therapy Masterclass"
 								eventImg="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 								eventDate="May 25, 2024"
-								eventTags={['Blood Donation']}
-								eventLocation="Location"
-								totalLiveParticipants={'10K'}
+								eventTags={['For Mothers']}
+								eventLocation="4th Floor Taj Hotel, Bhopal"
+								// totalLiveParticipants={'10K'}
 								eventLink="/book/blood-donation"
-								eventTime="10:00 AM - 11:00 AM"
+								eventTime="10:00 AM"
 								eventPrice="Free"
-								eventOrganizer="SombaHelp Foundation"
+								eventOrganizer="Sufal Support Group"
 								eventPurchaseLink="/book/blood-donation"
 								isLiked={true}
 							/>
-						</CarouselItem>
-						<CarouselItem className="px-5 basic-0  md:basis-1/2 lg:basis-1/3">
+						</CarouselItem> */}
+						
+						<CarouselItem className="px-5 basic-0 mx-auto  md:basis-1/2 lg:basis-1/3">
 							<EventCard
-								eventTitle="Tree Plantation"
-								eventDescription="Tree Plantation"
-								eventImg="https://plus.unsplash.com/premium_photo-1672777647624-2ced35ca04d6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDMyfDZzTVZqVExTa2VRfHxlbnwwfHx8fHw%3D"
-								eventDate="May 29, 2024"
-								eventTags={['Tree Planting']}
-								eventLocation="Location"
-								totalLiveParticipants={'10K'}
-								eventLink="/book/tree-plantation"
-								eventTime="10:00 AM - 11:00 AM"
+								eventTitle="Sound Therapy Masterclass "
+								eventDescription="Sound Therapy Masterclass"
+								eventImg="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+								eventDate="May 25, 2024"
+								eventTags={['For Mothers']}
+								eventLocation="4th Floor Taj Hotel, Bhopal"
+								// totalLiveParticipants={'10K'}
+								eventLink="/book/blood-donation"
+								eventTime="10:00 AM"
 								eventPrice="Free"
-								eventOrganizer="ABC Foundation"
-								eventPurchaseLink="ht/book/tree-plantation"
+								eventOrganizer="Sufal Support Group"
+								eventPurchaseLink="/book/blood-donation"
 								isLiked={true}
-							/>
-						</CarouselItem>
-						<CarouselItem className="px-5 basic-0  md:basis-1/2 lg:basis-1/3">
-							<EventCard
-								eventTitle="Road Cleaning"
-								eventDescription="Road Cleaning"
-								eventImg="https://images.unsplash.com/photo-1715763306006-9777a0873742?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDE4fDZzTVZqVExTa2VRfHxlbnwwfHx8fHw%3D"
-								eventDate="May 29, 2024"
-								eventTags={['Road Cleaning']}
-								eventLocation="Location"
-								totalLiveParticipants={'10K'}
-								eventLink="/book/road-cleaning"
-								eventTime="10:00 AM - 11:00 AM"
-								eventPrice="Free"
-								eventOrganizer="ABC Foundation"
-								eventPurchaseLink="/book/road-cleaning"
-								isLiked={true}
-							/>
-						</CarouselItem>
-						<CarouselItem className="px-5 basic-0  md:basis-1/2 lg:basis-1/3">
-							<EventCard
-								eventTitle="Teaching Camp"
-								eventDescription="Teaching Camp"
-								eventImg="https://images.unsplash.com/photo-1715505535741-e20f2ea6c573?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDl8NnNNVmpUTFNrZVF8fGVufDB8fHx8fA%3D%3D"
-								eventDate="May 29, 2024"
-								eventTags={['Teaching Camp']}
-								eventLocation="Location"
-								totalLiveParticipants={'10K'}
-								eventLink="/book/teaching-camp"
-								eventTime="10:00 AM - 11:00 AM"
-								eventPrice="Free"
-								eventOrganizer="ABC Foundation"
-								eventPurchaseLink="/book/teaching-camp"
-								isLiked={false}
 							/>
 						</CarouselItem>
 					</CarouselContent>

@@ -9,6 +9,8 @@ import { getFormattedDate } from '../lib/getDate';
 import { BsStars } from 'react-icons/bs';
 import { FaRegHeart } from 'react-icons/fa';
 import { RiHeartFill, RiHeartLine } from 'react-icons/ri';
+import { MdMoreTime } from "react-icons/md";
+
 
 const EventCard = ({
 	eventTitle,
@@ -20,6 +22,7 @@ const EventCard = ({
 	eventLink,
 	eventTime,
 	eventPrice,
+	eventDuration,
 	eventOrganizer,
 	eventPurchaseLink,
 	totalLiveParticipants,
@@ -65,33 +68,7 @@ const EventCard = ({
 					className="w-fit h-fit p-4  absolute bottom-2 left-1 flex flex-col -space-y-1 text-[#fbfcfc]"
 					onClick={handleLike}
 				>
-					<span className=" p-1.5 gap-2 flex items-center justify-center text-2xl font-bold cursor-pointer transition-colors">
-						<div className="isolate flex -space-x-2">
-							<img
-								className="relative z-0 inline-block w-6 h-6 rounded-full ring-2 ring-white"
-								src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-								alt={eventTitle}
-							/>
-							<img
-								className="relative z-10 inline-block w-6 h-6 rounded-full ring-2 ring-white"
-								src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-								alt={eventTitle}
-							/>
-							<img
-								className="relative z-20 inline-block w-6 h-6 rounded-full ring-2 ring-white"
-								src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-								alt={eventTitle}
-							/>
-							<img
-								className="relative z-30 inline-block w-6 h-6 rounded-full ring-2 ring-white"
-								src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-								alt={eventTitle}
-							/>
-						</div>
-						<span className="text-[#fbfcfc] font-semibold text-sm">
-							+{totalLiveParticipants} Going
-						</span>
-					</span>
+					
 				</div>
 				<img
 					src={eventImg}
@@ -104,7 +81,7 @@ const EventCard = ({
 				<div className="w-full flex flex-wrap">
 					{eventTags?.map((tag) => (
 						<span
-							className="mb-2 mr-2 inline-block rounded-[0.15rem] px-3 py-1 text-sm font-medium bg-[#0a7558b2] text-[#16191E]"
+							className="mb-2 mr-2 inline-block rounded-[0.15rem] px-3 py-1 text-sm font-medium bg-[#0a7558b2] text-[#ebf3ee]"
 							key={tag}
 						>
 							{tag}
@@ -135,9 +112,23 @@ const EventCard = ({
 							/>
 							<span className="text-[#16191E] selection:text-[#16191E] ">
 								<span className="text-[#16191E] selection:text-[#16191E] ">
-									From {dateTag.day} {dateTag.month}
+									{dateTag.day} {dateTag.month} :  {" "}
 								</span>
-								• {eventTime}
+								 Time : {eventTime}
+							</span>
+						</span>
+					</div>
+					<div className="w-full flex flex-row items-center justify-between text-sm text-[#868686]">
+						<span className="w-full flex flex-row items-center justify-start gap-1.5 selection:text-[#16191E]">
+							<MdMoreTime
+								size={24}
+								color="#16191E"
+							/>
+							<span className="text-[#16191E] selection:text-[#16191E] ">
+								<span className="text-[#16191E] selection:text-[#16191E] ">
+									Duration :  {" "}
+								</span>
+								 2 Hour
 							</span>
 						</span>
 					</div>
@@ -148,7 +139,7 @@ const EventCard = ({
 								color="#16191E"
 							/>
 							<span className="text-[#16191E] selection:text-[#16191E] ">
-								From{' '}
+								Entry : {' '}
 								{eventPrice === 'Free'
 									? 'Free'
 									: `$${eventPrice}`}
@@ -176,14 +167,14 @@ const EventCard = ({
 						className="w-full"
 					>
 						<button className="w-full px-4 sm:px-5 md:px-6 py-2 mt-2 rounded-md text-white bg-[#0a7558] hover:bg-[#1f6351]">
-							Buy Tickets
+							Rsvp Now!
 						</button>
 					</Link>
 					<Link
 						to={eventLink}
 						className="w-full"
 					>
-						<button className="w-full px-4 sm:px-5 md:px-6 py-2 mt-2 rounded-md bg-[#cbcbcb] hover:bg-[#acacac] text-[#16191E]">
+						<button className="w-full px-4 sm:px-5 md:px-6 py-2 mt-2 rounded-md bg-[#dbdada] hover:bg-[#acacac] text-[#16191E]">
 							View Details
 						</button>
 					</Link>

@@ -16,32 +16,32 @@ const Header = () => {
 			path: '/',
 		},
 		{
-			title: 'About Us',
+			title: 'About',
 			path: '/about-us',
 		},
+		// {
+		// 	title: 'Categories',
+		// 	path: '/categories',
+		// },
 		{
-			title: 'Categories',
-			path: '/categories',
+			title: 'Events',
+			path: '/events',
 		},
 		{
-			title: 'Campaign',
-			path: '/campaign',
-		},
-		{
-			title: 'News',
-			path: '/news',
+			title: 'Blogs',
+			path: '/blogs',
 		},
 		{
 			title: 'Volunteer',
 			path: '/volunteer',
 		},
 		{
+			title: 'Our Team', // support us page
+			path: '/our-team',
+		},{
 			title: 'Contact Us',
 			path: '/contact-us',
-		},{
-			title: 'Support Us',
-			path: '/support-us',
-		}
+		},
 	];
 
 
@@ -58,15 +58,15 @@ const Header = () => {
 	return (
 		<div className="relative w-full z-20">
 			<div
-				className={` w-full flex items-center justify-center py-4 px-4 z-20 bg-gradient-to-r from-[#fbe7d0] via-[#ffeedbf5] to-emerald-100`}
+				className={` w-full flex items-center justify-center py-4 px-4 z-20 bg-gradient-to-r from-[#fbe7d0] via-[#ffeedbf5] to-pink-200`}
 			>
 				<div className="max-w-7xl w-full flex  items-center justify-between">
 					<div className="text-xl font-semibold tracking-wide select-none">
 						<Link to={'/'}>
 							<span className={`text-[${colorTheme.zinc}]`}>
-								Sombo
+								Sufal.in
 								<span className={`text-[${colorTheme.green}]`}>
-									Help
+									
 								</span>
 							</span>
 						</Link>
@@ -92,7 +92,7 @@ const Header = () => {
 						</div>
 						<Button
 							message="Sign Up"
-							className="px-6 rounded-2xl bg-[#0a7558] "
+							className="px-6 py-1.5 rounded-2xl bg-[#24856b] "
 							href={'/auth'}
 						/>
 					</div>
@@ -106,7 +106,7 @@ const Header = () => {
 			</div>
 			{isMenuOpen && (
 				<div className="absolute inset-x-0 md:w-1/2 md:left-1/2 top-0 z-50 origin-top-right transform p-2 transition lg:hidden">
-					<div className="divide-y-2 divide-gray-50 rounded-lg bg-gradient-to-r from-[#fbe7d0] via-[#ffeedbf5] to-emerald-100 backdrop-blur-xl shadow-lg ring-1 ring-black ring-opacity-5">
+					<div className="divide-y-2 divide-gray-50 rounded-lg bg-gradient-to-r from-[#fbe7d0] via-[#ffeedbf5] to-pink-200 backdrop-blur-xl shadow-lg ring-1 ring-black ring-opacity-5">
 						<div className="px-5 pb-6 pt-5">
 							<div className="flex items-center justify-between">
 								<div className="inline-flex items-center space-x-2">
@@ -117,11 +117,11 @@ const Header = () => {
 										<span
 											className={`font-semibold text-[${colorTheme.zinc}]`}
 										>
-											Sombo
+											Sufal : {" "}
 											<span
 												className={`font-semibold text-[${colorTheme.green}]`}
 											>
-												Help
+												Pregnancy Support
 											</span>
 										</span>
 									</Link>
@@ -155,9 +155,7 @@ const Header = () => {
 											<span className="ml-3 text-base font-medium text-gray-900">
 												{option.title}
 											</span>
-											<span>
-												<BiChevronRight className="ml-3 h-4 w-4" />
-											</span>
+											
 										</Link>
 									))}
 								</nav>

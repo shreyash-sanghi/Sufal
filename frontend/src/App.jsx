@@ -47,11 +47,11 @@ export const AppRouter = () => {
 				element={<Categories />}
 			/>
 			<Route
-				path="/campaign"
+				path="/events"
 				element={<Campaign />}
 			/>
 			<Route
-				path="/news"
+				path="/blogs"
 				element={<span>News</span>}
 			/>
 			<Route
