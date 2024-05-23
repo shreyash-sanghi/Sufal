@@ -33,6 +33,7 @@ import EventCard from '../components/EventCard';
 import aboutimg from '../assets/about-img2.png';
 import { ImWoman } from "react-icons/im";
 
+import Header from '../components/Header';
 
 const Info = ({ title, description }) => {
 	return (
@@ -83,6 +84,8 @@ const Home = () => {
 	}, [api]);
 
 	return (
+	       <>
+		   <Header/>
 		<div className="w-full bg-[#fefaf6] ">
 			<div
 				id="home"
@@ -789,6 +792,7 @@ const Home = () => {
 				</div>
 			</div>
 		</div>
+		</>
 	);
 };
 
