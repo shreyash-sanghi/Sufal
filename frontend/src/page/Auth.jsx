@@ -2,13 +2,83 @@ import React, { useEffect, useState } from 'react';
 import { BsArrowRight } from 'react-icons/bs';
 import { FaFacebook, FaFacebookF } from 'react-icons/fa';
 import { FcCloseUpMode, FcGoogle } from 'react-icons/fc';
-import { useLocation, useSearchParams } from 'react-router-dom';
-
+import { useLocation, useSearchParams,useNavigate } from 'react-router-dom';
+import axios from 'axios';
 const Auth = () => {
 	const [searchParams] = useSearchParams();
 	const signupParam = searchParams.get('mode') === 'signup';
 	const loginParam = searchParams.get('mode') === 'login';
 	const [signUpForm, setSignUpForm] = useState(signupParam);
+
+
+//Sign Up
+const navigate = useNavigate();
+const [data,setdata] = useState({
+	Name:"",
+	Email:"",
+	Password:""
+})
+const changedata = (e)=>{
+	const {name,value} = e.target;
+  setdata((info)=>{
+	return{
+		...info,
+		[name]:value
+	}
+  })
+}
+
+const savedata = async(e)=>{
+	e.preventDefault();
+try {
+	const {Email,Password,Name} = data;
+	const result = await axios.post("http://localhost:7000/sign_up",{
+		Email,Password,Name
+	});
+	alert("Success")
+	const token = result.data.token;
+	axios.defaults.headers.common["Authorization"] = token;
+	localStorage.setItem("token",token);
+	navigate("/dashboard")
+} catch (error) {
+	console.log(error)
+	alert(error)
+}
+}
+
+//Login
+const [login_data,setlogin_data] = useState({
+	Email:"",
+	Password:""
+})
+const changelogin_data = (e)=>{
+	const {name,value} = e.target;
+  setlogin_data((info)=>{
+	return{
+		...info,
+		[name]:value
+	}
+  })
+}
+
+const savelogin_data = async(e)=>{
+	e.preventDefault();
+try {
+	const {Email,Password} = login_data;
+	console.log(Email,Password)
+	const result = await axios.post("http://localhost:7000/sign_in",{
+		Email,Password
+	});
+	console.log(result)
+	const token = result.data.token;
+	axios.defaults.headers.common["Authorization"] = token;
+	localStorage.setItem('token', token);
+	navigate("/dashboard")
+} catch (error) {
+	alert(error.response.data.error)
+	console.log(error)
+}
+}
 
 	useEffect(() => {
 		const mode = searchParams.get('mode');
@@ -54,9 +124,10 @@ const Auth = () => {
 								{signUpForm ? 'Log in' : 'Sign up'}
 							</span>
 						</p>
-						<form className="mt-6">
-							<div className="space-y-5">
-								{signUpForm && (
+					
+					{signUpForm && (
+										<form className="mt-6">
+										<div className="space-y-5">
 									<div>
 										<label
 											htmlFor="name"
@@ -66,6 +137,7 @@ const Auth = () => {
 										</label>
 										<div className="mt-2">
 											<input
+                                                 name="Name" onChange={changedata}
 												className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
 												type="text"
 												placeholder="Full Name"
@@ -73,7 +145,7 @@ const Auth = () => {
 											></input>
 										</div>
 									</div>
-								)}
+								
 								<div>
 									<label
 										htmlFor="email"
@@ -83,6 +155,7 @@ const Auth = () => {
 									</label>
 									<div className="mt-2">
 										<input
+                                          name="Email" onChange={changedata}
 											className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
 											type="email"
 											placeholder="Email"
@@ -101,6 +174,7 @@ const Auth = () => {
 									</div>
 									<div className="mt-2">
 										<input
+										 name="Password" onChange={changedata}
 											className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
 											type="password"
 											placeholder="Password"
@@ -110,6 +184,7 @@ const Auth = () => {
 								</div>
 								<div>
 									<button
+									onClick={savedata}
 										type="submit"
 										className="inline-flex w-full items-center justify-center rounded-md bg-[#0a7558] px-3.5 py-2.5 font-semibold leading-7 text-[#fbfcfc] hover:bg-[#0a7558] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0a7558]"
 									>
@@ -124,7 +199,65 @@ const Auth = () => {
 								</div>
 							</div>
 						</form>
-						<div className="mt-3 space-y-3">
+					)}
+										<form method='POST' className="mt-6">
+										<div className="space-y-5">						
+								<div>
+									<label
+										htmlFor="email"
+										className="text-base font-medium text-gray-900"
+									>
+										Email address
+									</label>
+									<div className="mt-2">
+										<input
+                                         
+											className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+											type="email"
+											placeholder="Email"
+											id="email"
+                                 name="Email" onChange={changelogin_data}
+										></input>
+									</div>
+								</div>
+								<div>
+									<div className="flex items-center justify-between">
+										<label
+											htmlFor="password"
+											className="text-base font-medium text-gray-900"
+										>
+											Password
+										</label>
+									</div>
+									<div className="mt-2">
+										<input
+										
+											className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
+											type="password"
+											placeholder="Password"
+											id="password"
+											name="Password" onChange={changelogin_data}
+										></input>
+									</div>
+								</div>
+								<div>
+									<button
+									onClick={savelogin_data}
+										type="submit"
+										className="inline-flex w-full items-center justify-center rounded-md bg-[#0a7558] px-3.5 py-2.5 font-semibold leading-7 text-[#fbfcfc] hover:bg-[#0a7558] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0a7558]"
+									>
+										{signUpForm
+											? 'Create Account'
+											: 'Login'}
+										<BsArrowRight
+											className="ml-2"
+											size={16}
+										/>
+									</button>
+								</div>
+							</div>
+						</form>
+						{/* <div className="mt-3 space-y-3">
 							<button
 								type="button"
 								className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-400 bg-white px-3.5 py-2.5 font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none"
@@ -150,7 +283,7 @@ const Auth = () => {
 									? 'Sign up with Facebook'
 									: 'Log in with Facebook'}
 							</button>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>

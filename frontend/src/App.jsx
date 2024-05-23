@@ -10,16 +10,20 @@ import Campaign from './page/Campaign';
 import SupportUs from './page/SupportUs';
 import Footer from './components/Footer';
 import Categories from './page/Categories';
-
+import Dashboard from './components/Dashboard/Dashboard';
+import Event from './components/Dashboard/Events/Event';
+import CreateRegisterForm from './components/Dashboard/CreateRegisterForm';
+import UplodeMultipleImage from './components/Dashboard/UplodeMultipleImage';
+import AddEvent from './components/Dashboard/Events/AddEvents';
 const App = () => {
 	return (
 		<BrowserRouter>
 			<div className="w-full h-full min-h-screen flex flex-col bg-[#fefaf6] text-[#16191E]">
-				<Header />
+				{/* <Header />	 */}
 				<main className="flex-1 w-full">
 					<AppRouter />
 				</main>
-				<Footer />
+				{/* <Footer /> */}
 			</div>
 		</BrowserRouter>
 	);
@@ -66,6 +70,18 @@ export const AppRouter = () => {
 				path="/support-us"
 				element={<SupportUs />}
 			/>
+			<Route
+				path="/uplode_event_image"
+				element={<UplodeMultipleImage />}
+			/>
+
+
+			{/* Backend routes */}
+			<Route exact path="/dashboard" Component={Dashboard}></Route>
+			<Route exact path="/event/:kind_of_event" Component={Event}></Route>
+        <Route exact path="/event/:kind_of_event/:rid" Component={Event}></Route>
+        <Route exact path="/create_form" Component={CreateRegisterForm}></Route>
+		<Route exact path="/add_event/:about_type" Component={AddEvent}></Route>
 		</Routes>
 	);
 };

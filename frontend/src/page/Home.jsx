@@ -25,6 +25,7 @@ import {
 } from '../components/ui/carousel';
 import TeamCard from '../components/TeamCard';
 import EventCard from '../components/EventCard';
+import Header from '../components/Header';
 
 const Info = ({ title, description }) => {
 	return (
@@ -75,6 +76,8 @@ const Home = () => {
 	}, [api]);
 
 	return (
+	       <>
+		   <Header/>
 		<div className="w-full bg-[#fefaf6] ">
 			<div
 				id="home"
@@ -782,6 +785,7 @@ const Home = () => {
 				</div>
 			</div>
 		</div>
+		</>
 	);
 };
 

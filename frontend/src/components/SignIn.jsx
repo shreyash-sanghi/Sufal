@@ -4,13 +4,13 @@ import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 const SignIn = ()=>{
     const navigate = useNavigate();
-    const [data,setdata] = useState({
+    const [login_data,setlogin_data] = useState({
         Email:"",
         Password:""
     })
-    const changedata = (e)=>{
+    const changelogin_data = (e)=>{
         const {name,value} = e.target;
-      setdata((info)=>{
+      setlogin_data((info)=>{
         return{
             ...info,
             [name]:value
@@ -18,10 +18,10 @@ const SignIn = ()=>{
       })
     }
 
-    const savedata = async(e)=>{
+    const savelogin_data = async(e)=>{
         e.preventDefault();
     try {
-        const {Email,Password} = data;
+        const {Email,Password} = login_data;
         const result = await axios.post("http://localhost:7000/sign_in",{
             Email,Password
         });
@@ -50,11 +50,11 @@ const SignIn = ()=>{
               <form class="space-y-4 md:space-y-6" method='POST'>
                   <div>
                       <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                      <input type="email" name="Email" onChange={changedata} id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required/>
+                      <input type="email" name="Email" onChange={changelogin_data} id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required/>
                   </div>
                   <div>
                       <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                      <input type="password" name="Password" onChange={changedata} id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
+                      <input type="password" name="Password" onChange={changelogin_data} id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required/>
                   </div>
                   <div class="flex items-center justify-between">
                       <div class="flex items-start">
@@ -67,7 +67,7 @@ const SignIn = ()=>{
                       </div>
                       <a href="#" class="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500">Forgot password?</a>
                   </div>
-                  <button onClick={savedata} type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
+                  <button onClick={savelogin_data} type="submit" class="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign in</button>
                   <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                       Don’t have an account yet? <a href="#" class="font-medium text-primary-600 hover:underline dark:text-primary-500">Sign up</a>
                   </p>
