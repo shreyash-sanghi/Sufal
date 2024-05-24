@@ -34,6 +34,7 @@ import aboutimg from '../assets/about-img2.png';
 import { ImWoman } from "react-icons/im";
 
 import Header from '../components/Header';
+import axios from 'axios';
 
 const Info = ({ title, description }) => {
 	return (
@@ -82,7 +83,121 @@ const Home = () => {
 			setCurrent(api.selectedScrollSnap() + 1);
 		});
 	}, [api]);
+  //Show Event data
+  const [initial, final] = useState([{
+    eid: "",
+    EventName: "",
+    Place: "",
+    Time: "",
+    EDate: "",
+    EventBanner: "",
+    PastConform: "",
+    CurrentConform: "",
+    Discreption: "",
+    image_key: "",
+    Duration: "",
+    Fee: "",
+    Organization: "",
+    Title: "",
+  }])
 
+
+  const monthToNumber = (month) => {
+    const monthDict = {
+      "January": 1, "February": 2, "March": 3, "April": 4, "May": 5, "June": 6,
+      "July": 7, "August": 8, "September": 9, "October": 10, "November": 11, "December": 12
+    };
+    return monthDict[month];
+  }
+  const compareDates = (date1, date2) => {
+    const [day1, month1, year1] = date1.split('/');
+    const [day2, month2, year2] = date2.split('/');
+    if (year1 !== year2) {
+      if (parseInt(year1) > parseInt(year2)) {
+        return true;
+      }
+    } else if (monthToNumber(month1) !== monthToNumber(month2)) {
+      if (monthToNumber(month1) > monthToNumber(month2)) {
+        return true;
+      }
+    } else if (parseInt(day1) !== parseInt(day2)) {
+      if (parseInt(day1) > parseInt(day2)) {
+        return true;
+      }
+    }
+    return false;
+  }
+  const getdata = async () => {
+
+    let todaydate = new Date();
+    const months = ["January", "February", "March", "April", "May",
+      "June", "July", "August", "September", "October", "November", "December"];
+    let month = months[todaydate.getMonth()];
+    let curdate = todaydate.getDate();
+    let curyear = todaydate.getFullYear();
+    if (curdate < 10) {
+      curdate = `0${curdate}`;
+    }
+    todaydate = `${curdate}/${month}/${curyear}`;
+    try {
+      const data = await axios.get("http://localhost:7000/get_current_event_data");
+      const result = data.data.result;
+      // console.log(result);
+      result.map(async (info) => {
+        console.log(info)
+        let EventDate = info.EDate;
+        const isDate1AfterDate = compareDates(todaydate, EventDate);
+        if (isDate1AfterDate && info.PastConform == false) {
+          await axios.post(`http://localhost:7000/send_to_past_event/${info._id}`);
+          final((about) => [
+            ...about, {
+              eid: info._id,
+              EventName: info.EventName,
+              Place: info.Place,
+              Time: info.Time,
+              EDate: info.EDate,
+              EventBanner: info.EventBanner,
+              PastConform: true,
+              CurrentConform: false,
+              Discreption: info.Discreption,
+              image_key: info.public_id,
+              Duration: info.Duration,
+              Fee: info.Fee,
+              Organization: info.Organization,
+              Title: info.Title,
+            }
+          ])
+        } else {
+          final((about) => [
+            ...about, {
+              eid: info._id,
+              EventName: info.EventName,
+              Place: info.Place,
+              Time: info.Time,
+              EDate: info.EDate,
+              EventBanner: info.EventBanner,
+              PastConform: info.PastConform,
+              CurrentConform: info.CurrentConform,
+              Discreption: info.Discreption,
+              image_key: info.public_id,
+			  Duration: info.Duration,
+              Fee: info.Fee,
+              Organization: info.Organization,
+              Title: info.Title,
+            }
+          ])
+        }
+      })
+    } catch (error) {
+      console.log(error);
+      alert(error);
+    }
+  }
+
+  //Use Effect
+  useEffect(() => {
+    getdata();
+  }, [])
 	return (
 	       <>
 		   <Header/>
@@ -376,24 +491,32 @@ const Home = () => {
 								isLiked={true}
 							/>
 						</CarouselItem> */}
-						
+						{initial.map((info)=>{
+							if(!info.eid) return null;
+							if(!info.CurrentConform) return null
+							return(<>
 						<CarouselItem className="px-5 basic-0 mx-auto  md:basis-1/2 lg:basis-1/3">
+
 							<EventCard
-								eventTitle="Sound Therapy Masterclass "
-								eventDescription="Sound Therapy Masterclass"
-								eventImg="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-								eventDate="May 25, 2024"
+								eventTitle={info.EventName}
+								eventDescription={info.Discreption}
+								eventImg={info.EventBanner}
+								eventDate={info.EDate}
 								eventTags={['For Mothers']}
-								eventLocation="4th Floor Taj Hotel, Bhopal"
+								eventLocation={info.Place}
 								// totalLiveParticipants={'10K'}
 								eventLink="/book/blood-donation"
-								eventTime="10:00 AM"
-								eventPrice="Free"
-								eventOrganizer="Sufal Support Group"
-								eventPurchaseLink="/book/blood-donation"
+								Duration={info.Duration}
+								eventTime={info.Time}
+								eventPrice={info.Fee}
+								eventOrganizer={info.Organization}
+								eventPurchaseLink={`/book/register_booking/${info.eid}`}
+								registrationAndrsvp = "Register Now!"
 								isLiked={true}
 							/>
 						</CarouselItem>
+						</>)
+						})}
 					</CarouselContent>
 					<CarouselPrevious className="ml-4	 sm:ml-28 md:ml-16		 md:-bottom-8" />
 					<CarouselNext className="mr-6 sm:mr-0 md:mr-1 md:-bottom-8" />

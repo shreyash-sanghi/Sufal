@@ -1,7 +1,7 @@
 const express = require("express");
 const router = new express.Router();
 const Current = require("../models/Event");
-// const CurreateReg = require("../models/RegisterForm");
+const CurreateReg = require("../models/EventRegForm");
 const mongoose = require("mongoose")
 const cloudinary = require("cloudinary");
 
@@ -22,11 +22,11 @@ router.get("/get_current_event_data",async(req,res)=>{
    })
 
 
- router.post("/uplodeEventData",async(req,res)=>{
+  router.post("/uplodeEventData",async(req,res)=>{
     try {
-       const {EventName,public_id,Formfields, Discreption, Place, EDate,Time,EventBanner,CurrentConform,PastConform} = req.body;
+       const {Title,Organization,Duration,Fee,EventName,public_id, Discreption, Place, EDate,Time,EventBanner,CurrentConform,PastConform} = req.body;
        const result = await Current.create({
-        EventName,Formfields, Discreption,public_id, Place, EDate,Time,EventBanner,CurrentConform,PastConform
+         Title,Organization,Duration,Fee, EventName,Discreption,public_id, Place, EDate,Time,EventBanner,CurrentConform,PastConform
        })
        res.sendStatus(202);
     } catch (error) {
@@ -48,6 +48,9 @@ router.get("/get_current_event_data",async(req,res)=>{
         res.sendStatus(404);
       }
    })
+
+
+
 
    router.delete("/delete_all_registration/:id",async(req,res)=>{
       try{
@@ -81,30 +84,28 @@ router.get("/get_current_event_data",async(req,res)=>{
    })
 
 
-router.post("/delete_register/:eid",async(req,res)=>{
+router.delete("/delete_register/:eid",async(req,res)=>{
    try{
       const id = req.params.eid;
-      const data = req.body.uid;
-const result = await Current.findById(id);
-const filteredData = result.RegisterData.filter(item => item.uid != data);
-await Current.findByIdAndUpdate(id,{RegisterData:filteredData})
+const result = await CurreateReg.findByIdAndDelete(id);
+console.log(result)
 res.sendStatus(202);
    }catch(error){
       console.log(error);
-      res.sendStatus(202);
+      res.sendStatus(204);
    }
 })
-router.post("/save_register/:eid",async(req,res)=>{
+
+
+router.post("/save_register",async(req,res)=>{
    try{
-      const id = req.params.eid;
-      const data = req.body.obj;
-const result = await Current.findById(id);
- result.RegisterData.push(data);
-await Current.findByIdAndUpdate(id,{RegisterData:result.RegisterData})
+      const {Name,Email,Number,WhyWeJoin,Address,Eid} = req.body;
+       console.log(Name,Email,Number,WhyWeJoin,Address,Eid)
+     await CurreateReg.create({Name,Email,Number,WhyWeJoin,Address,Eid});
 res.sendStatus(202);
    }catch(error){
       console.log(error);
-      res.sendStatus(202);
+      res.sendStatus(404);
    }
 })
 
@@ -113,6 +114,27 @@ router.get("/get_cad_data",async(req,res)=>{
    try{
 const result = await Current.find();
 res.status(202).json({result })
+   }catch(error){
+      console.log(error);
+      res.sendStatus(202);
+   }
+})
+
+router.get("/get_register_form/:id",async(req,res)=>{
+   try{
+      const id = req.params.id;
+const result = await Current.findById(id);
+res.status(202).json({result })
+   }catch(error){
+      console.log(error);
+      res.sendStatus(202);
+   }
+})
+router.get("/get_view_register/:id",async(req,res)=>{
+   try{
+      const id = req.params.id;
+const result = await CurreateReg.find({Eid:id});
+res.status(202).json({result})
    }catch(error){
       console.log(error);
       res.sendStatus(202);
