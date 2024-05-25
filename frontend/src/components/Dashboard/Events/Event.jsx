@@ -149,12 +149,12 @@ const CurrentEvent = () => {
 
                             <tbody class="text-gray-600 dark:text-gray-100">
                               <tr>
-                                <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EventName}</td>
-                                <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Place}</td>
-                                <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EDate}</td>
-                                <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Time}</td>
-                                <td class="sm:p-3 max-w-20 overflow-x-hidden py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Discreption}</td>
-                                <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
+                                <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EventName}</td>
+                                <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Place}</td>
+                                <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EDate}</td>
+                                <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Time}</td>
+                                <td class="sm:p-3 px-3 max-w-20 overflow-x-hidden py-2 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Discreption}</td>
+                                <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800">
                                   <div class="flex items-center">
                                   </div>
                                   <div class="flex items-center">
@@ -268,12 +268,12 @@ const CurrentEvent = () => {
 
                                       <tbody class="text-gray-600 dark:text-gray-100">
                                         <tr>
-                                          <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EventName}</td>
-                                          <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Place}</td>
-                                          <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EDate}</td>
+                                          <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EventName}</td>
+                                          <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Place}</td>
+                                          <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EDate}</td>
                                           {/* <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Time}</td> */}
-                                          <td class="sm:p-3  overflow-x-hidden py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100"><button onClick={()=>navigate(`/uplode_event_image`)} className='border-2 px-4 py-2 font-semibold hover:bg-sky-400 rounded-lg'>Add Photos</button></td>
-                                          <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
+                                          <td class="sm:p-3  overflow-x-hidden py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100"><button onClick={()=>navigate(`/uplode_event_image`)} className='border-2 px-4 py-2 font-semibold hover:bg-sky-400 rounded-lg'>Add Photos</button></td>
+                                          <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800">
                                             <div class="flex items-center">
 
                                               <button class="w-28 h-8 inline-flex items-center justify-center text-lg text-green-400 ml-auto"

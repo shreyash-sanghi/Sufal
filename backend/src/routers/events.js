@@ -140,6 +140,16 @@ res.status(202).json({result})
       res.sendStatus(202);
    }
 })
+router.get("/get_registerdata_byid/:id",async(req,res)=>{
+   try{
+      const id = req.params.id;
+const result = await Current.findById(id);
+res.status(202).json({result})
+   }catch(error){
+      console.log(error);
+      res.sendStatus(202);
+   }
+})
 
 
 module.exports = router;

@@ -16,7 +16,7 @@ const DashboardNav = ()=>{
   }
     return(
         <>
-            <div className="p-3 space-y-2 hidden md:block min-h-screen border-white mr-2 bg-gray-900 text-white  w-[16%] ">
+            <div className="p-3 space-y-2 hidden md:block min-h-screen border-white    bg-gray-900 text-white  w-[16%] ">
           <div className="flex items-center justify-center mr-3 p-2 ">
               <h2 className="text-lg font-bold">Dashboard</h2>
             

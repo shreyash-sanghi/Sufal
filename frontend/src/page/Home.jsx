@@ -492,6 +492,7 @@ const Home = () => {
 							/>
 						</CarouselItem> */}
 						{initial.map((info)=>{
+							// console.log(info)
 							if(!info.eid) return null;
 							if(!info.CurrentConform) return null
 							return(<>
