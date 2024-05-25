@@ -75,7 +75,11 @@ alert("success")
     </div>
     <div class="extraOutline p-4 w-max bg-whtie m-auto rounded-lg">
         <div class="file_upload p-5 w-[90vw] sm:w-[50vw] lg:w-[25vw] md:relative border-4 border-dotted border-green-300 rounded-lg" >
-            <svg class="text-green-500 w-28 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
+            {/* <svg class="text-green-500 w-28 mx-auto mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg> */}
+            <svg class="text-green-500 w-28 mx-auto mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 15v2a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3v-2m-8 1V4m0 12-4-4m4 4 4-4"/>
+</svg>
+
             <div class="input_field flex flex-col w-max mx-auto text-center">
                 <label>
                     <button onClick={handleUpload} class="text bg-green-600 text-xl text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-green-500">Save Image</button>

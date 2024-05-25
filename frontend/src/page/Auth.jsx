@@ -69,11 +69,17 @@ try {
 	const result = await axios.post("http://localhost:7000/sign_in",{
 		Email,Password
 	});
-	console.log(result)
 	const token = result.data.token;
+	const OwnerEmail = result.data.OwnerEmail;
 	axios.defaults.headers.common["Authorization"] = token;
 	localStorage.setItem('token', token);
-	navigate("/dashboard")
+	if(Email===OwnerEmail){
+		// navigate("/dashboard")
+		navigate("/add_event")
+	}
+	else{
+		navigate("/")
+	}
 } catch (error) {
 	alert(error.response.data.error)
 	console.log(error)
@@ -125,8 +131,8 @@ try {
 							</span>
 						</p>
 					
-					{signUpForm && (
-										<form className="mt-6">
+					{(signUpForm)?(<>
+						<form className="mt-6">
 										<div className="space-y-5">
 									<div>
 										<label
@@ -199,7 +205,7 @@ try {
 								</div>
 							</div>
 						</form>
-					)}
+					</>):(<>							
 										<form method='POST' className="mt-6">
 										<div className="space-y-5">						
 								<div>
@@ -257,6 +263,7 @@ try {
 								</div>
 							</div>
 						</form>
+						</>) }
 						{/* <div className="mt-3 space-y-3">
 							<button
 								type="button"

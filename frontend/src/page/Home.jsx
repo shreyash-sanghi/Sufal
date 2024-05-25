@@ -3,7 +3,7 @@ import { colorTheme } from '../constants/colorTheme';
 import herogif from '../assets/herogif4.mp4';
 import Button from '../components/Button';
 import { GrUserExpert } from "react-icons/gr";
-
+import Footer from '../components/Footer';
 import {
 	IoLogoInstagram,
 	IoLogoLinkedin,
@@ -916,6 +916,7 @@ const Home = () => {
 				</div>
 			</div>
 		</div>
+		<Footer/>
 		</>
 	);
 };
