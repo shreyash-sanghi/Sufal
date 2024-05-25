@@ -18,7 +18,7 @@ const ViewRegister = () => {
 
     const getdata =async()=>{
         try{
-      const result = await axios.get(`http://localhost:7000/get_view_register/${Eid}`);
+      const result = await axios.get(`https://sufalbackend-shreyash-sanghis-projects.vercel.app/get_view_register/${Eid}`);
       console.log(result)
       const data = result.data.result;
       data.map((info)=>{
@@ -82,7 +82,7 @@ useEffect(()=>{
               const confirm_delete = confirm("You have Confirm to delete...")
         
               if(confirm_delete){
-                 const result = await axios.delete(`http://localhost:7000/delete_register/${data.eid}` )
+                 const result = await axios.delete(`https://sufalbackend-shreyash-sanghis-projects.vercel.app/delete_register/${data.eid}` )
                  final((info) =>
                   info.filter((about) => about.eid != data.eid)
                 );

@@ -140,7 +140,7 @@ const Home = () => {
     }
     todaydate = `${curdate}/${month}/${curyear}`;
     try {
-      const data = await axios.get("http://localhost:7000/get_current_event_data");
+      const data = await axios.get("https://sufalbackend-shreyash-sanghis-projects.vercel.app/get_current_event_data");
       const result = data.data.result;
       // console.log(result);
       result.map(async (info) => {
@@ -148,7 +148,7 @@ const Home = () => {
         let EventDate = info.EDate;
         const isDate1AfterDate = compareDates(todaydate, EventDate);
         if (isDate1AfterDate && info.PastConform == false) {
-          await axios.post(`http://localhost:7000/send_to_past_event/${info._id}`);
+          await axios.post(`https://sufalbackend-shreyash-sanghis-projects.vercel.app/send_to_past_event/${info._id}`);
           final((about) => [
             ...about, {
               eid: info._id,
