@@ -25,8 +25,10 @@ const EventCard = ({
 	eventDuration,
 	eventOrganizer,
 	eventPurchaseLink,
+	Duration,
 	totalLiveParticipants,
 	isLiked,
+	registrationAndrsvp
 }) => {
 	const dateTag = getFormattedDate(eventDate);
 	const [isLikedState, setIsLikedState] = useState(isLiked);
@@ -128,7 +130,7 @@ const EventCard = ({
 								<span className="text-[#16191E] selection:text-[#16191E] ">
 									Duration :  {" "}
 								</span>
-								 2 Hour
+								 {Duration} Hour
 							</span>
 						</span>
 					</div>
@@ -167,7 +169,7 @@ const EventCard = ({
 						className="w-full"
 					>
 						<button className="w-full px-4 sm:px-5 md:px-6 py-2 mt-2 rounded-md text-white bg-[#0a7558] hover:bg-[#1f6351]">
-							Rsvp Now!
+							{registrationAndrsvp}
 						</button>
 					</Link>
 					<Link

@@ -118,7 +118,7 @@ const CurrentEvent = () => {
 
   return (
     <>
-      <div className="flex bg-gray-800">
+      <div className="flex md:flex-row flex-col min-h-screen bg-gray-800">
         <DashboardNav />
         <div class="font-sans bg-grey-lighter flex flex-col w-full">
           <div class=" dark:text-white text-gray-600  flex overflow-hidden text-sm">
@@ -128,7 +128,7 @@ const CurrentEvent = () => {
                 <div class="flex-grow   overflow-y-auto">
                   <div class="py-4">
                     {(kind_of_event === "current_event") ? (<>
-                      <table class="w-full text-left">
+                      <table class="w-full whitespace-nowrap text-left overflow-scroll">
                         <thead>
                           <tr class="text-white border-b">
                             <th class="font-bold text-lg px-3 pt-0 pb-3 border-b border-gray-200 ">Event Name</th>
@@ -149,12 +149,12 @@ const CurrentEvent = () => {
 
                             <tbody class="text-gray-600 dark:text-gray-100">
                               <tr>
-                                <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EventName}</td>
-                                <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Place}</td>
-                                <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EDate}</td>
-                                <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Time}</td>
-                                <td class="sm:p-3 max-w-20 overflow-x-hidden py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Discreption}</td>
-                                <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
+                                <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EventName}</td>
+                                <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Place}</td>
+                                <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EDate}</td>
+                                <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Time}</td>
+                                <td class="sm:p-3 px-3 max-w-20 overflow-x-hidden py-2 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Discreption}</td>
+                                <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800">
                                   <div class="flex items-center">
                                   </div>
                                   <div class="flex items-center">
@@ -191,13 +191,13 @@ const CurrentEvent = () => {
                       </table>
                     </>) : (<>
                       {(kind_of_event === "registration_record") ? (<>
-                        <table class="w-full text-left">
+                        <table class="w-full whitespace-nowrap text-left overflow-scroll">
                             <thead>
                               <tr class="text-white border-b">
                                 <th class="font-bold text-lg px-3 pt-0 pb-3 border-b border-gray-200 ">Event Name</th>
                                 <th class="font-bold text-lg px-3 pt-0 pb-3 border-b border-gray-200 ">Vanue</th>
                                 <th class="font-bold text-lg px-3 pt-0 pb-3 border-b border-gray-200 ">Date</th>
-                                <th class="font-bold text-lg px-3 pt-0 pb-3 border-b border-gray-200 ">Total Registration</th>
+                                {/* <th class="font-bold text-lg px-3 pt-0 pb-3 border-b border-gray-200 ">Total Registration</th> */}
 
                               </tr>
                             </thead>
@@ -210,33 +210,16 @@ const CurrentEvent = () => {
                                     <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EventName}</td>
                                     <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Place}</td>
                                     <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EDate}</td>
-                                    <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.RegisterData.length}</td>
-                                    <td class="sm:p-3 max-w-20 overflow-x-hidden py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100"><button
+                                    {/* <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.RegisterData.length}</td> */}
+                                    <td class="sm:p-3  overflow-x-hidden py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100"><button
                                       onClick={() => {
-                                        navigate(`/event/view_registration/${index}`);
-                                        // {console.log(initial[index])}
-                                        // // iterate_input(initial[1].RegisterData[1])
+                                        navigate(`/view_register/${data.eid}`);
                                       }}
 
                                       className='border-2 px-4 py-2 font-semibold hover:bg-sky-400 rounded-lg'>View Registration</button></td>
                                     <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
                                       <div class="flex items-center">
-{/* 
-                                        <button class="w-24 h-8 inline-flex items-center justify-center text-lg text-green-400 ml-auto"
-                                          onClick={async () => {
-                                            try {
-                                              navigate(`/view_detail/Admin/${id}/${data.uid}`)
-                                              final((info) =>
-                                                info.filter((about) => about.verify != data.uid)
-                                              );
-                                            } catch (error) {
-                                              alert(error);
-                                              console.log(error);
-                                            }
-                                          }}
-                                        >
-                                          View Profile
-                                        </button> */}
+
                                       </div>
                                       <div class="flex items-center">
 
@@ -268,73 +251,8 @@ const CurrentEvent = () => {
                               )
                             })}
                           </table>
-                      </>) : (<>
-                        {(kind_of_event === "view_registration") ? (<>
-                          <table class="w-full text-left">
-
-<thead>
-  <tr class="text-white border-b">
-  
-    {initial[rid].RegisterForm.map((info) => {
-      return (
-        <>
-          <th class="font-bold text-lg px-3 pt-0 pb-3 border-b border-gray-200 ">{info.name}</th>
-
-        </>
-      )
-    })}
-  </tr>
-</thead>
-{/* {iterate_input(initial[rid].RegisterData[1])} */}
-{/* {  console.log(initial[rid].RegisterData)}
-{  console.log(initial[rid].RegisterForm[0].dataName)} */}
-{initial[rid].RegisterData.map((data) => {
-  //  console.log(initial[rid].eid)
-  return (<>
-    <tbody class="text-gray-600 dark:text-gray-100">
-      <tr>
-      {
-    initial[rid].RegisterForm.map((info) => {
-      if(info.dataName === undefined) return null;
-      let name = info.dataName;
-      return (
-        <>
-        <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data[name]}</td>
-        </>
-      )
-    })
-  }
-        <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
-          <div class="flex items-center">
-
-            <button onClick={async()=>{
-              const con = confirm("You have Confirm to delete...")
-              if(con){
-
-                 const result = await axios.post(`http://localhost:7000/delete_register/${initial[rid].eid}`,
-                  {uid:data.uid}
-                 )
-                 final((info) =>
-                  info.filter((about) => about.eid != initial[rid].eid)
-                );
-                //  getdata();
-
-              }
-            }} class="w-24 h-8 inline-flex items-center justify-center text-lg text-red-400 ml-auto">
-              Remove
-            </button>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </>
-  )
-})}
-{/* {initial[rid].RegisterData} */}
-{/* {initial.filter(console.log(()=>initial.eid==rid))} */}
-                      </table>
-                        </>) :(<>
-                                <table class="w-full text-left">
+                      </>) :(<>
+                                <table class="w-full whitespace-nowrap text-left overflow-scroll">
                                   <thead>
                                     <tr class="text-white border-b">
                                       <th class="font-bold text-lg px-3 pt-0 pb-3 border-b border-gray-200 ">Event Name</th>
@@ -350,12 +268,12 @@ const CurrentEvent = () => {
 
                                       <tbody class="text-gray-600 dark:text-gray-100">
                                         <tr>
-                                          <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EventName}</td>
-                                          <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Place}</td>
-                                          <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EDate}</td>
+                                          <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EventName}</td>
+                                          <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Place}</td>
+                                          <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.EDate}</td>
                                           {/* <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Time}</td> */}
-                                          <td class="sm:p-3 max-w-20 overflow-x-hidden py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100"><button onClick={()=>navigate(`/uplode_event_image`)} className='border-2 px-4 py-2 font-semibold hover:bg-sky-400 rounded-lg'>Add Photos</button></td>
-                                          <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800">
+                                          <td class="sm:p-3  overflow-x-hidden py-2 px-3 border-b border-gray-200 dark:border-gray-800 text-gray-100"><button onClick={()=>navigate(`/uplode_event_image`)} className='border-2 px-4 py-2 font-semibold hover:bg-sky-400 rounded-lg'>Add Photos</button></td>
+                                          <td class="sm:p-3 py-2 px-3 border-b border-gray-200 dark:border-gray-800">
                                             <div class="flex items-center">
 
                                               <button class="w-28 h-8 inline-flex items-center justify-center text-lg text-green-400 ml-auto"
@@ -405,7 +323,6 @@ const CurrentEvent = () => {
                                   })}
                                 </table>
                               </>)}
-                      </>)}
                     </>)}
                   </div>
                 </div>

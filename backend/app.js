@@ -6,14 +6,15 @@ const { default: mongoose } = require('mongoose');
 const cors = require("cors");
 const auth = require("./src/routers/auth")
 const events = require("./src/routers/events")
+const MyTeam = require("./src/routers/team")
 app.use(cors({
-    origin:"http://localhost:5173",
+    origin:"https://sufal.vercel.app",
     methods:["POST", "GET", "PATCH", "PUT", "DELETE"],
     credential:true
 }))
 
 app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', "http://localhost:5173",);
+    res.header('Access-Control-Allow-Origin', "https://sufal.vercel.app",);
     res.header('Access-Control-Allow-Credentials', "true");
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
@@ -29,6 +30,7 @@ app.use(function (req, res, next) {
 
 app.use(auth);
 app.use(events);
+app.use(MyTeam);
 app.get("",(req,res)=>{
     try {
         res.send("Hello My name is shreyash jain...")

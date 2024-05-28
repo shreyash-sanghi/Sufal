@@ -12,9 +12,13 @@ import Footer from './components/Footer';
 import Categories from './page/Categories';
 import Dashboard from './components/Dashboard/Dashboard';
 import Event from './components/Dashboard/Events/Event';
-import CreateRegisterForm from './components/Dashboard/CreateRegisterForm';
+import CreateRegisterForm from './components/CreateRegisterForm';
 import UplodeMultipleImage from './components/Dashboard/UplodeMultipleImage';
 import AddEvent from './components/Dashboard/Events/AddEvents';
+import ViewRegister from './components/Dashboard/Events/ViewRegister';
+import CreateTeam from './components/Dashboard/CreateTeam';
+import MyTeam from './components/Dashboard/Myteam';
+import EditProfile from './components/Dashboard/EditProfile';
 import Events from './page/Events';
 const App = () => {
 	return (
@@ -81,8 +85,12 @@ export const AppRouter = () => {
 			<Route exact path="/dashboard" Component={Dashboard}></Route>
 			<Route exact path="/event/:kind_of_event" Component={Event}></Route>
         <Route exact path="/event/:kind_of_event/:rid" Component={Event}></Route>
-        <Route exact path="/create_form" Component={CreateRegisterForm}></Route>
-		<Route exact path="/add_event/:about_type" Component={AddEvent}></Route>
+        <Route exact path="/book/register_booking/:rid" Component={CreateRegisterForm}></Route>
+		<Route exact path="/add_event" Component={AddEvent}></Route>
+		<Route exact path="/new_member" Component={CreateTeam}></Route>
+		<Route exact path="/my_team" Component={MyTeam}></Route>
+		<Route exact path="/edit_profile/:id" Component={EditProfile}></Route>
+		<Route exact path="/view_register/:Eid" Component={ViewRegister}></Route>
 		</Routes>
 	);
 };

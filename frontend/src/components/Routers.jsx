@@ -6,7 +6,7 @@ import SignUp from "./SignUp";
 import Dashboard from "./Dashboard/Dashboard";
 import AddEvent from "./Dashboard/Events/AddEvents";
 import Event from "./Dashboard/Events/Event";
-import CreateRegisterForm from "./Dashboard/CreateRegisterForm";
+import CreateRegisterForm from "./CreateRegisterForm";
 const Routers = ()=>{
     return(
         <>
