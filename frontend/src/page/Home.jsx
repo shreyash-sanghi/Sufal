@@ -3,6 +3,9 @@ import { colorTheme } from '../constants/colorTheme';
 import herogif from '../assets/herogif4.mp4';
 import Button from '../components/Button';
 import { GrUserExpert } from "react-icons/gr";
+import team1 from '../assets/team1.png';
+import team2 from '../assets/team2.png';
+import Footer from '../components/Footer';
 
 import {
 	IoLogoInstagram,
@@ -341,7 +344,7 @@ const Home = () => {
 			{/*  */}
 			<div
 				id="upcoming-events"
-				className="w-full max-w-7xl mx-auto px-3 pt-14 pb-16 bg-white"
+				className="w-full max-w-7xl mx-auto px-3 pt-14 pb-16"
 			>
 				<div className="w-full flex flex-col mb-2 items-center justify-center">
 					<span className="text-4xl font-medium text-[#f9c950]">
@@ -400,7 +403,7 @@ const Home = () => {
 				</Carousel>
 			</div>
 			{/*  */}
-			<div
+			{/* <div
 				id="campaign"
 				className="max-w-7xl mx-auto px-5 pt-6 flex flex-col items-start justify-start selection:bg-[#0a755862]"
 			>
@@ -481,7 +484,7 @@ const Home = () => {
 						/>
 					</div>
 				</div>
-			</div>
+			</div> */}
 			<div
 				id="news"
 				className="w-full max-w-7xl mx-auto px-5 pt-14 flex flex-col items-start justify-start selection:bg-[#0a755862]	"
@@ -581,9 +584,9 @@ const Home = () => {
 						<CarouselContent className=" w-[23rem] md:w-[44rem] lg:w-full	 ml-1 md:ml-0 py-5">
 							<CarouselItem className="px-5 basic-0  md:basis-1/2 lg:basis-1/3">
 								<TeamCard
-									teamMemberName="Vinay Kumar"
-									profession="CEO 1"
-									profileImage="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=2080&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+									teamMemberName="Shailja Mam"
+									profession="Executive"
+									profileImage={team1}
 									socialLinks={[
 										{
 											name: 'Linkedin',
@@ -605,9 +608,9 @@ const Home = () => {
 							</CarouselItem>
 							<CarouselItem className="px-5 basic-0  md:basis-1/2 lg:basis-1/3">
 								<TeamCard
-									teamMemberName="Sunil Kumar"
-									profession="CEO 2"
-									profileImage="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDJ8fHxlbnwwfHx8fHw%3D"
+									teamMemberName="Shailja Mam"
+									profession="Director"
+									profileImage={team2}
 									socialLinks={[
 										{
 											name: 'Linkedin',
@@ -627,54 +630,7 @@ const Home = () => {
 									]}
 								/>
 							</CarouselItem>
-							<CarouselItem className="px-5 basic-0  md:basis-1/2 lg:basis-1/3">
-								<TeamCard
-									teamMemberName="Pankaj Kumar"
-									profession="CEO 3"
-									profileImage="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fHVzZXIlMjBhdmF0YXJ8ZW58MHx8MHx8fDA%3D"
-									socialLinks={[
-										{
-											name: 'Linkedin',
-											href: '#',
-											icon: <IoLogoLinkedin size={24} />,
-										},
-										{
-											name: 'Instagram',
-											href: '#',
-											icon: <IoLogoInstagram size={24} />,
-										},
-										{
-											name: 'Facebook',
-											href: '#',
-											icon: <BsFacebook size={24} />,
-										},
-									]}
-								/>
-							</CarouselItem>
-							<CarouselItem className="px-5 basic-0  md:basis-1/2 lg:basis-1/3">
-								<TeamCard
-									teamMemberName="Radhika"
-									profession="CEO 4"
-									profileImage="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-									socialLinks={[
-										{
-											name: 'Linkedin',
-											href: '#',
-											icon: <IoLogoLinkedin size={24} />,
-										},
-										{
-											name: 'Instagram',
-											href: '#',
-											icon: <IoLogoInstagram size={24} />,
-										},
-										{
-											name: 'Facebook',
-											href: '#',
-											icon: <BsFacebook size={24} />,
-										},
-									]}
-								/>
-							</CarouselItem>
+							
 						</CarouselContent>
 						<CarouselPrevious className="ml-[3.2rem] sm:ml-12 md:ml-[4rem]		 	md:-bottom-[2rem]" />
 						<CarouselNext className="mr-10 sm:mr-12 md:-mr-[3rem] md:right-16	 md:-bottom-[2rem]" />
@@ -737,54 +693,7 @@ const Home = () => {
 									]}
 								/>
 							</CarouselItem>
-							<CarouselItem className="px-5 basic-0  md:basis-1/2 lg:basis-1/3">
-								<TeamCard
-									teamMemberName="Pankaj Kumar"
-									profession="CEO 3"
-									profileImage="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fHVzZXIlMjBhdmF0YXJ8ZW58MHx8MHx8fDA%3D"
-									socialLinks={[
-										{
-											name: 'Linkedin',
-											href: '#',
-											icon: <IoLogoLinkedin size={24} />,
-										},
-										{
-											name: 'Instagram',
-											href: '#',
-											icon: <IoLogoInstagram size={24} />,
-										},
-										{
-											name: 'Facebook',
-											href: '#',
-											icon: <BsFacebook size={24} />,
-										},
-									]}
-								/>
-							</CarouselItem>
-							<CarouselItem className="px-5 basic-0  md:basis-1/2 lg:basis-1/3">
-								<TeamCard
-									teamMemberName="Radhika"
-									profession="CEO 4"
-									profileImage="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1976&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-									socialLinks={[
-										{
-											name: 'Linkedin',
-											href: '#',
-											icon: <IoLogoLinkedin size={24} />,
-										},
-										{
-											name: 'Instagram',
-											href: '#',
-											icon: <IoLogoInstagram size={24} />,
-										},
-										{
-											name: 'Facebook',
-											href: '#',
-											icon: <BsFacebook size={24} />,
-										},
-									]}
-								/>
-							</CarouselItem>
+							
 						</CarouselContent>
 						<CarouselPrevious className="ml-[3.2rem] sm:ml-12 md:ml-32 	md:-bottom-44" />
 						<CarouselNext className="mr-10 sm:mr-12 md:-mr-[3rem] md:-right-1 md:bottom-[9rem]" />
@@ -792,6 +701,7 @@ const Home = () => {
 				</div>
 			</div>
 		</div>
+		<Footer></Footer>
 		</>
 	);
 };

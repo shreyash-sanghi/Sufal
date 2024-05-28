@@ -15,6 +15,7 @@ import Event from './components/Dashboard/Events/Event';
 import CreateRegisterForm from './components/Dashboard/CreateRegisterForm';
 import UplodeMultipleImage from './components/Dashboard/UplodeMultipleImage';
 import AddEvent from './components/Dashboard/Events/AddEvents';
+import Events from './page/Events';
 const App = () => {
 	return (
 		<BrowserRouter>
@@ -52,7 +53,7 @@ export const AppRouter = () => {
 			/>
 			<Route
 				path="/events"
-				element={<Campaign />}
+				element={<Events />}
 			/>
 			<Route
 				path="/blogs"
