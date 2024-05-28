@@ -61,7 +61,7 @@ const CurrentEvent = () => {
     }
     todaydate = `${curdate}/${month}/${curyear}`;
     try {
-      const data = await axios.get("https://sufalbackend-shreyash-sanghis-projects.vercel.app/get_current_event_data");
+      const data = await axios.get("http://localhost:7000/get_current_event_data");
       const result = data.data.result;
       // console.log(result);
       result.map(async (info) => {
@@ -69,7 +69,7 @@ const CurrentEvent = () => {
         let EventDate = info.EDate;
         const isDate1AfterDate = compareDates(todaydate, EventDate);
         if (isDate1AfterDate && info.PastConform == false) {
-          await axios.post(`https://sufalbackend-shreyash-sanghis-projects.vercel.app/send_to_past_event/${info._id}`);
+          await axios.post(`http://localhost:7000/send_to_past_event/${info._id}`);
           final((about) => [
             ...about, {
               eid: info._id,
@@ -165,7 +165,7 @@ const CurrentEvent = () => {
                                         if (res) {
                                           try {
 
-                                            const response = await axios.post(`https://sufalbackend-shreyash-sanghis-projects.vercel.app/send_to_past_event/${data.eid}`);
+                                            const response = await axios.post(`http://localhost:7000/send_to_past_event/${data.eid}`);
                                             getdata();
                                             final((info) =>
                                               info.filter((about) => about.eid != data.eid)
@@ -228,7 +228,7 @@ const CurrentEvent = () => {
                                             const res = confirm("You have confirm to delete all registration...");
                                             if (res) {
                                                 try {
-                                                    const response = await axios.delete(`https://sufalbackend-shreyash-sanghis-projects.vercel.app/delete_all_registration/${data.eid}`);
+                                                    const response = await axios.delete(`http://localhost:7000/delete_all_registration/${data.eid}`);
                                                     final((info) =>
                                                         info.filter((about) => about.eid != data.eid)
                                                     );
@@ -299,7 +299,7 @@ const CurrentEvent = () => {
                                                   const res = confirm("You have confirm to delete request ");
                                                   if (res) {
                                                       try {
-                                                          const response = await axios.delete(`https://sufalbackend-shreyash-sanghis-projects.vercel.app/delete_event/${data.eid}`);
+                                                          const response = await axios.delete(`http://localhost:7000/delete_event/${data.eid}`);
                                                           final((info) =>
                                                               info.filter((about) => about.eid != data.eid)
                                                           );

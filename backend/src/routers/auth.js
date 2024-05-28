@@ -44,8 +44,10 @@ router.post("/sign_in",async(req,res)=>{
 
 router.get("/user_auth",midelware,async(req,res)=>{
     try{
-      const Name = req.Name;
-      res.status(202).json({Name});
+      const Name = req.name;
+      const Email = req.email;
+      console.log(Email)
+      res.status(202).json({Name,Email,OwnerEmail:process.env.Owner_Email});
     }catch(error){
         res.sendStatus(error);
     }

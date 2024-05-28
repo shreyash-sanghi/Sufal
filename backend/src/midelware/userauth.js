@@ -10,6 +10,7 @@ const addData = async (req,res,next)=>{
         const user = await Register.findOne({_id:varifyUser._id})
         req.id = user._id;
         req.name = user.Name;
+        req.email = user.Email;
         next();
     } catch (error) {
         res.status(401).send("error"+error);

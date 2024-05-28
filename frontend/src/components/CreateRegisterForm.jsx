@@ -38,7 +38,7 @@ const saveRegister = async(event)=>{
     try {
       event.preventDefault();
      const {Name,Email,Number,Address,WhyWeJoin} = fields;
-   const result = await axios.post(`https://sufalbackend-shreyash-sanghis-projects.vercel.app/save_register`,
+   const result = await axios.post(`http://localhost:7000/save_register`,
    {Name,Email,Number,Address,WhyWeJoin,Eid:rid});
    console.log(result)
    alert("success")
@@ -51,7 +51,7 @@ const saveRegister = async(event)=>{
 
 const getdata = async()=>{
   try{
-const response = await axios.get(`https://sufalbackend-shreyash-sanghis-projects.vercel.app/get_registerdata_byid/${rid}`);
+const response = await axios.get(`http://localhost:7000/get_registerdata_byid/${rid}`);
 const result = response.data.result;
 final({
  EventName:result.EventName,

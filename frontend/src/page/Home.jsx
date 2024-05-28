@@ -4,6 +4,7 @@ import herogif from '../assets/herogif4.mp4';
 import Button from '../components/Button';
 import { GrUserExpert } from "react-icons/gr";
 import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
 import {
 	IoLogoInstagram,
 	IoLogoLinkedin,
@@ -75,7 +76,6 @@ const Home = () => {
 		if (!api) {
 			return;
 		}
-
 		setCount(api.scrollSnapList().length);
 		setCurrent(api.selectedScrollSnap() + 1);
 
@@ -140,7 +140,7 @@ const Home = () => {
     }
     todaydate = `${curdate}/${month}/${curyear}`;
     try {
-      const data = await axios.get("https://sufalbackend-shreyash-sanghis-projects.vercel.app/get_current_event_data");
+      const data = await axios.get("http://localhost:7000/get_current_event_data");
       const result = data.data.result;
       // console.log(result);
       result.map(async (info) => {
@@ -148,7 +148,8 @@ const Home = () => {
         let EventDate = info.EDate;
         const isDate1AfterDate = compareDates(todaydate, EventDate);
         if (isDate1AfterDate && info.PastConform == false) {
-          await axios.post(`https://sufalbackend-shreyash-sanghis-projects.vercel.app/send_to_past_event/${info._id}`);
+        //   await axios.post(`https://sufalbackend-shreyash-sanghis-projects.vercel.app/send_to_past_event/${info._id}`);
+          await axios.post(`http://localhost:7000/send_to_past_event/${info._id}`);
           final((about) => [
             ...about, {
               eid: info._id,
@@ -198,6 +199,26 @@ const Home = () => {
   useEffect(() => {
     getdata();
   }, [])
+
+  const navigate = useNavigate();
+  const token = localStorage.getItem("token");
+  
+  const verifytoken = async()=>{
+   try{
+	  axios.defaults.headers.common["Authorization"] = token;
+	  const result = await axios.get("http://localhost:7000/user_auth");
+	  navigate("/dashboard")
+   }catch(error){
+	  alert(error);
+	  console.log(error);
+   }
+  }
+  console.log(token);
+	  useEffect(()=>{
+		  if(token != null || token != undefined){
+			  verifytoken();
+		  }
+	  },[])
 	return (
 	       <>
 		   <Header/>
@@ -277,13 +298,6 @@ const Home = () => {
 						</span>
 						<span className="w-full text-base font-semibold text-[#868686] selection:text-[#16191E]">
 						We provide essential support to expectant mothers worldwide.
-
-
-
-
-
-
-
 						</span>
 					</div>
 					<div className="w-full flex flex-col items-start justify-start gap-5">
@@ -320,7 +334,6 @@ const Home = () => {
 							}
 							icon={
 								<MdOutlineSupportAgent size={24} color={"#7CB9E8"} />
-
 							}
 							color={'#F0F8FF'}
 						/>
@@ -492,7 +505,7 @@ const Home = () => {
 							/>
 						</CarouselItem> */}
 						{initial.map((info)=>{
-							// console.log(info)
+							console.log(info)
 							if(!info.eid) return null;
 							if(!info.CurrentConform) return null
 							return(<>
