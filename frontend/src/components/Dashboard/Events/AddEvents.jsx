@@ -375,13 +375,7 @@ const AddEvent = () => {
             </form>
 
             <div class="hidden lg:block w-[30%] h-fit ml-5  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-              <a href="#">
-                {(initialAddEventfile === undefined) ? (<>
-                  <img class="rounded-t-lg object-cover w-full h-[35vh]" src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="" />
-                </>) : (<>
-                  <img class="rounded-t-lg object-cover w-full h-[35vh]" src={URL.createObjectURL(initialAddEventfile)} alt="" />
-                </>)}
-              </a>
++
               <div class="p-5">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-100 dark:text-white">{initialAddEvent.EventName}</h5>
                 <div className="flex font-semibold items-center gap-5 text-white my-3">

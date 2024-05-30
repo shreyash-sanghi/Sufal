@@ -8,13 +8,13 @@ const auth = require("./src/routers/auth")
 const events = require("./src/routers/events")
 const MyTeam = require("./src/routers/team")
 app.use(cors({
-    origin:"https://sufal.vercel.app",
+    origin:"http://localhost:5173",
     methods:["POST", "GET", "PATCH", "PUT", "DELETE"],
     credential:true
 }))
 
 app.use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', "https://sufal.vercel.app",);
+    res.header('Access-Control-Allow-Origin', "http://localhost:5173",);
     res.header('Access-Control-Allow-Credentials', "true");
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DashboardNav from './DashboardNav';
 import axios from 'axios';
-import User_profile from "../../assets/user_profile.jpg";
 import { useParams } from 'react-router-dom';
 const MyTeam =()=>{
      const {id} = useParams();
@@ -20,41 +19,42 @@ const MyTeam =()=>{
     })
 
     const [profile,setProfile] = useState();
-if(profile !== undefined){
-    console.log("hello");
-}
+
     const savedata = async(e)=>{
         e.preventDefault();
-        const data = new FormData();
-        const cloudname = "djyu9nhjf";
-        data.append("file", profile);
-        data.append("upload_preset", 'mysufal');
-        data.append("cloud_name", cloudname)
-        try {
-            if(profile !== undefined){
-                const deleteImage = await axios.delete(`htpp://localhost:7000/delete_previous_image?${initial.public_id}`);
-             const res = await axios.post(`https://api.cloudinary.com/v1_1/${cloudname}/image/upload`, data);
-            const public_id = res.data.public_id;
-            const ProfilImage = res.data.url;
-            const {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission} = initial;
-            console.log(Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission)
-           const result = await axios.post(`http://localhost:7000/update_team_data/${id}`,
-            {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission,ProfilImage,public_id}
-           );
-           console.log(result);
-            }
-            else{
-            const {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission} = initial;
-           const result = await axios.post(`http://localhost:7000/update_team_data/${id}`,
-            {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission}
-           );
-           console.log(result);
-             }
-           alert("Success");
-        } catch (error) {
-            alert(error);
-            console.log(error);
-        }
+        console.log(profile)
+        // const data = new FormData();
+        // const cloudname = "djyu9nhjf";
+        // data.append("file", profile);
+        // data.append("upload_preset", 'mysufal');
+        // data.append("cloud_name", cloudname)
+        // try {
+        //     if(profile === undefined){
+        //         const {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission} = initial;
+        //         console.log(Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission)
+        //        const result = await axios.post(`http://localhost:7000/update_team_data/${id}`,
+        //         {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission}
+        //        );
+        //        console.log(result);
+              
+        //     }
+        //     else{
+        //         const deleteImage = await axios.delete(`htpp://localhost:7000/delete_previous_image/${initial.public_id}`);
+        //         const res = await axios.post(`https://api.cloudinary.com/v1_1/${cloudname}/image/upload`, data);
+        //        const public_id = res.data.public_id;
+        //        const ProfilImage = res.data.url;
+        //        const {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission} = initial;
+        //        console.log(Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission)
+        //       const result = await axios.post(`http://localhost:7000/update_team_data/${id}`,
+        //        {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission,ProfilImage,public_id}
+        //       );
+        //       console.log(result);
+        //      }
+        //    alert("Success");
+        // } catch (error) {
+        //     alert(error);
+        //     console.log(error);
+        // }
     }
     const setdata =(e)=>{
      const {name,value} = e.target;
@@ -92,7 +92,6 @@ if(profile !== undefined){
 useEffect(()=>{
  getdata();
 },[])
-console.log(initial.image)
 
     return(
         <>
@@ -109,7 +108,7 @@ console.log(initial.image)
                     <div
                         class="w-full rounded-sm bg-cover bg-center bg-no-repeat items-center">
                         {/* <!-- Profile Image -->{console.log(URL.createObjectURL(profile))} */}
-                        {(profile === undefined && initial.image !== undefined  ) ? (<>
+                        {( profile === undefined ) ? (<>
                             <div
                             class={`mx-auto flex justify-center w-[130px] h-[130px] bg-blue-300/20 rounded-full bg-cover bg-center bg-no-repeat`}
                             style={{ backgroundImage: `url(${initial.image})` }}                       
@@ -118,7 +117,7 @@ console.log(initial.image)
               </a>
                             <div class="bg-white/90 rounded-full w-6 h-6 text-center ml-28 mt-4">
 
-                                <input onChange={(e)=>setProfile(e.target.files[0])} type="file" name="profile" id="upload_profile" hidden required/>
+                            {/* <input onChange={(e)=>setProfile(e.target.files[0])} type="file" name="profile" id="upload_profile" hidden required/> */}
 
                                 <label for="upload_profile">
                                         <svg data-slot="icon" class="w-6 h-5 text-blue-700" fill="none"
@@ -133,37 +132,9 @@ console.log(initial.image)
                                         </svg>
                                     </label>
                             </div>
-                        </div>                </>) : (<>
-
-                        {(profile === undefined)?(<>
-                        
+                        </div>           
+                           </>):(<>
                             <div
-                            class={`mx-auto flex justify-center w-[130px] h-[130px] bg-blue-300/20 rounded-full bg-cover bg-center bg-no-repeat`}
-                            style={{ backgroundImage: `url(${User_profile})` }}                       
-                            >
-                          <a href="#">       
-              </a>
-                            <div class="bg-white/90 rounded-full w-6 h-6 text-center ml-28 mt-4">
-
-                                <input onChange={(e)=>setProfile(e.target.files[0])} type="file" name="profile" id="upload_profile" hidden required/>
-
-                                <label for="upload_profile">
-                                        <svg data-slot="icon" class="w-6 h-5 text-blue-700" fill="none"
-                                            stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24"
-                                            xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z">
-                                            </path>
-                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z">
-                                            </path>
-                                        </svg>
-                                    </label>
-                            </div>
-                        </div>   </>):(<>
-                            <div
-                            // class={`mx-auto flex justify-center w-[130px] h-[130px] bg-blue-300/20 rounded-full bg-[url(${URL.createObjectURL(profile)})] bg-cover bg-center bg-no-repeat`}
-                            // class={`mx-auto flex justify-center w-[130px] h-[130px] bg-blue-300/20 rounded-full bg-[url()] bg-cover bg-center bg-no-repeat`}
                             class={`mx-auto flex justify-center w-[130px] h-[130px] bg-blue-300/20 rounded-full bg-cover bg-center bg-no-repeat`}
                             style={{ backgroundImage: `url(${URL.createObjectURL(profile)})` }}                       
                             >
@@ -172,7 +143,7 @@ console.log(initial.image)
               </a>
                             <div class="bg-white/90 rounded-full w-6 h-6 text-center ml-28 mt-4">
 
-                                <input onChange={(e)=>setProfile(e.target.files[0])} type="file" name="profile" id="upload_profile" hidden required/>
+                            {/* <input onChange={(e)=>setProfile(e.target.files[0])} type="file" name="profile" id="upload_profile" hidden required/> */}
 
                                 <label for="upload_profile">
                                         <svg data-slot="icon" class="w-6 h-5 text-blue-700" fill="none"
@@ -187,9 +158,8 @@ console.log(initial.image)
                                         </svg>
                                     </label>
                             </div>
-                        </div>          
-                        </>)}
-                              </>)}
+                        </div>  
+                           </>)}
                    
                         <div class="flex justify-end">
                             {/* <!--  --> */}
