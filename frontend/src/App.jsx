@@ -19,6 +19,7 @@ import ViewRegister from './components/Dashboard/Events/ViewRegister';
 import CreateTeam from './components/Dashboard/CreateTeam';
 import MyTeam from './components/Dashboard/Myteam';
 import EditProfile from './components/Dashboard/EditProfile';
+import Events from './page/Events';
 const App = () => {
 	return (
 		<BrowserRouter>
@@ -56,7 +57,7 @@ export const AppRouter = () => {
 			/>
 			<Route
 				path="/events"
-				element={<Campaign />}
+				element={<Events />}
 			/>
 			<Route
 				path="/blogs"

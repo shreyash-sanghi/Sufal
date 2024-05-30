@@ -4,10 +4,12 @@ import TeamCard from '../components/TeamCard';
 import { IoLogoGithub, IoLogoInstagram, IoLogoLinkedin } from 'react-icons/io5';
 import { FaFacebookF } from 'react-icons/fa';
 import { BsFacebook } from 'react-icons/bs';
-
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 const AboutUs = () => {
-	return (
-		<div className="w-full h-full flex flex-col items-center justify-center transition-all selection:bg-[#0a755862] py-5 space-y-8	">
+	return ( <>
+	<Header></Header>
+	<div className="w-full h-full flex flex-col items-center justify-center transition-all selection:bg-[#0a755862] py-5 space-y-8	">
 			<div className="max-w-7xl w-full h-full grid grid-cols-1  lg:grid-cols-2">
 				<div className="px-1 md:px-4">
 					<div className="py-6 md:py-24">
@@ -144,6 +146,9 @@ const AboutUs = () => {
 				</div>
 			</div>
 		</div>
+		<Footer></Footer>
+	</>
+		
 	);
 };
 

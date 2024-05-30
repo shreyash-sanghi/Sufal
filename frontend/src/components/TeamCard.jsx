@@ -26,7 +26,7 @@ const TeamCard = ({
 							<Link
 								to={link.href}
 								key={link.name}
-								className="rounded-full bg-[#d0d0d0] p-2 hover:bg-[#c0c0c0]"
+								className="rounded-full bg-pink-100 p-2 hover:bg-pink-200"
 							>
 								{link.icon}
 							</Link>

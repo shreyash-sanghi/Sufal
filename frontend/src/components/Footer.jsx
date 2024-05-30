@@ -4,6 +4,8 @@ import { colorTheme } from '../constants/colorTheme';
 import { HashLink } from 'react-router-hash-link';
 
 const Footer = () => {
+	const currentYear = new Date().getFullYear();
+
 	const menuOptions = [
 		{
 			title: 'Home',
@@ -187,9 +189,9 @@ const Footer = () => {
 					<div className="text-xl font-semibold tracking-wide select-none">
 						<HashLink to="/">
 							<span className={`text-[${colorTheme.zinc}]`}>
-								Sombo
+								Sufal.
 								<span className={`text-[${colorTheme.green}]`}>
-									Help
+									in
 								</span>
 							</span>
 						</HashLink>
@@ -197,7 +199,7 @@ const Footer = () => {
 				</div>
 				<div className="mt-4 md:mt-0 selection:text-[#16191E]">
 					<p className="text-sm font-medium text-gray-500">
-						© 2024 SomboHelp. All rights reserved.
+					© {currentYear} Sufal ~ All rights reserved.
 					</p>
 				</div>
 			</div>
