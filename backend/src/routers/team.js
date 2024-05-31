@@ -26,6 +26,8 @@ router.get("/get_team_data",async(req,res)=>{
        res.status(404).json({error});
     }
    })
+
+
 router.post("/update_team_data/:id",async(req,res)=>{
     try {
       const id = req.params.id;
@@ -58,6 +60,19 @@ router.get("/get_team_data_byid/:id",async(req,res)=>{
        console.log(error);
        res.status(404).json({error});
     }
+   })
+   
+   router.delete("/delete_previous_image/:pid",async(req,res)=>{
+      try{
+         const id = req.params.pid;
+       cloudinary.v2.uploader.destroy(id,async(err,result)=>{
+         console.log(err,result);
+       });
+          res.sendStatus(202);
+      }catch(error){
+         console.log(error);
+        res.sendStatus(404);
+      }
    })
    
    router.delete("/delete_team_member/:id",async(req,res)=>{
