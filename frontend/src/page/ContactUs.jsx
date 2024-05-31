@@ -6,9 +6,15 @@ import Button from '../components/Button';
 import ContactUsCard from '../components/ContactUsCard';
 import { HiOutlineLocationMarker } from 'react-icons/hi';
 import { IoCall, IoMail } from 'react-icons/io5';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import contactimg from '../assets/contact-img3.png';
+
 
 const ContactUs = () => {
 	return (
+		<>
+		<Header></Header>
 		<div
 			id="contact-us"
 			className="w-full h-full flex flex-col items-center justify-center transition-all selection:bg-[#0a755862]   py-8"
@@ -137,8 +143,8 @@ const ContactUs = () => {
 				</div>
 				<div className="hidden lg:flex h-full w-full p-2 mx-auto">
 					<img
-						className="mx-auto h-full w-full rounded-md object-cover"
-						src="https://images.unsplash.com/photo-1491895200222-0fc4a4c35e18?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+						className="mx-auto h-full w-full rounded-md object-contain"
+				src={contactimg}
 						alt=""
 						height={500}
 						draggable="false"
@@ -171,7 +177,7 @@ const ContactUs = () => {
 					/>
 					<ContactUsCard
 						title={'Email'}
-						description={['random@email.com', 'unknown@email.com']}
+						description={['sufal.care@gmail.com', 'priyabhave1@gmail.com']}
 						icon={
 							<IoMail
 								size={44}
@@ -182,6 +188,9 @@ const ContactUs = () => {
 				</div>
 			</div>
 		</div>
+		<Footer></Footer>
+		</>
+		
 	);
 };
 
