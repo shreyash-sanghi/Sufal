@@ -88,3 +88,22 @@
 body {
   background-color: #fefaf6;
 }
+@keyframes scroll {
+  0% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(calc(-200% - 32px)); /* Adjust for image width and margin */
+  }
+}
+
+.carousel {
+  display: flex;
+  animation: scroll 30s linear infinite;  /* Default speed */
+  will-change: transform;
+}
+
+.carousel img {
+  margin-right: 8px; /* Adjust the space between images */
+}
+

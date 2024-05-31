@@ -7,6 +7,7 @@ import team1 from '../assets/team1.png';
 import team2 from '../assets/team2.png';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
+import Glimpses from '../components/Glimpses';
 import {
 	IoLogoInstagram,
 	IoLogoLinkedin,
@@ -344,7 +345,7 @@ const Home = () => {
 			</div>
 			<div
 				id="categories"
-				className="max-w-7xl mx-auto px-5 md:px-0 pt-6 flex flex-col items-start justify-start selection:bg-[#0a755862]"
+				className="max-w-7xl mx-auto px-5 md:px-0 py-10 md:py-24 flex flex-col items-start justify-start selection:bg-[#0a755862]"
 			>
 				<div className="w-full flex flex-col items-center justify-center space-y-4">
 					<span className="text-3xl font-medium text-[#fbd066]">
@@ -469,6 +470,36 @@ const Home = () => {
 				
 			</div> */}
 			{/*  */}
+
+			<section class="text-gray-600 bg-white">
+  <div class="container mx-auto flex px-5 lg:px-24 py-10 md:py-20 md:flex-row flex-col items-center">
+  <div class="lg:max-w-sm lg:w-full md:w-1/2 w-5/6">
+      <img class="object-cover object-center rounded" alt="hero" src="https://palavigarbhasanskar.com/wp-content/uploads/2024/02/vector-952x1024.png"/>
+    </div>
+    <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left mt-10 md:mt-0 items-center text-center">
+      <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Understanding <span className='text-yellow-700'> Garbhasanskar</span>
+    
+      </h1>
+	  <div className='flex mb-4'>
+		<img src="https://cdn-icons-png.freepik.com/256/1414/1414254.png?semt=ais_hybrid" className='size-10 rounded-full' alt="" />
+		<img src="https://img.freepik.com/premium-photo/cute-woman-meditation-yoga-cartoon-vector-icon-illustration-people-sport-icon-concept-isolated-flat_839035-1015803.jpg" className='size-10 -ml-4 rounded-full' alt="" />
+		<img src="https://cdn-icons-png.freepik.com/512/2906/2906476.png" className='size-10 rounded-full -ml-4' alt="" />
+		<img src="https://cdn-icons-png.freepik.com/512/5001/5001175.png" className='size-10 rounded-full -ml-4' alt="" />
+		<img src="https://images.onlymyhealth.com/imported/images/2020/April/25_Apr_2020/big_14-Color-Tharepy.jpg" className='size-10 rounded-full -ml-4' alt="" />
+		<img src="https://thumbs.dreamstime.com/b/girl-listens-to-music-headphones-therapy-podcast-audiobook-radio-meditation-concept-profile-young-african-woman-vector-288627719.jpg" className='size-10 rounded-full -ml-4' alt="" />
+	  </div>
+      <p class="mb-8 leading-tight">Garbhasanskar is an ancient Indian practice that focuses on nurturing and educating the unborn child. The term "Garbhasanskar" is derived from two Sanskrit words: "Garbha" meaning "womb" and "Sanskar" meaning "ethics" or "values." It refers to a set of practices and rituals aimed at ensuring the physical, mental, and spiritual well-being of both the mother and the baby during pregnancy.</p>
+      <div class="flex justify-center">
+        <button class="inline-flex text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm">Explore</button>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+			<Glimpses></Glimpses>
+			
+			
 			<div
 				id="upcoming-events"
 				className="w-full max-w-7xl mx-auto px-3 pt-14 pb-16"
@@ -624,7 +655,7 @@ const Home = () => {
 			</div> */}
 			<div
 				id="news"
-				className="w-full max-w-7xl mx-auto px-5 pt-14 flex flex-col items-start justify-start selection:bg-[#0a755862]	"
+				className="w-full max-w-7xl mx-auto px-5 py-14 flex flex-col items-start justify-start selection:bg-[#0a755862]	"
 			>
 				<div className="w-full flex  flex-col md:flex-row items-center justify-start md:justify-between">
 					<div className="w-full flex items-center justify-start">
@@ -633,7 +664,7 @@ const Home = () => {
 						</span>
 					</div>
 					<div className="w-full flex-col items-center justify-start space-y-3">
-						<span className="w-full text-sm md:text-base font-semibold text-[#868686] selection:text-[#16191E]">
+						<span className="w-full text-sm md:text-base font-semibold text-[#868686] selection:text-[#0e1013]">
 							Stay informed with the latest developments on
 							charity campaigns to keep you engaged.
 						</span>
@@ -646,60 +677,7 @@ const Home = () => {
 						/>
 					</div>
 				</div>
-				<div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-start justify-start gap-8 mt-8">
-					<NewsCard
-						title={
-							'Facts About COVID Kraken, The Latest Omicron Variant'
-						}
-						description={
-							'The latest Omicron variant has been detected in Indonesia. Previously, this variant was known to have first appeared in the country in 2019...'
-						}
-						img={
-							'https://images.unsplash.com/flagged/photo-1573823448235-3e7ded467ad3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
-						}
-						date={randomDate}
-						href={'/news/1'}
-					/>
-					<NewsCard
-						title={
-							'The Shop Makes Donations For Cianjur Earthquake'
-						}
-						description={
-							'The Cianjur earthquake that occurred a few months ago has moved all Indonesian people to help the people  affected by th...'
-						}
-						img={
-							'https://plus.unsplash.com/premium_photo-1661508333411-0246522ee003?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGJ1c2luZXNzJTIwcGl0Y2h8ZW58MHx8MHx8fDA%3D'
-						}
-						date={randomDate}
-						href={'/news/1'}
-					/>
-					<NewsCard
-						title={
-							'Should Women Get Tetanus Shots Before Marriage?'
-						}
-						description={
-							'One of the requirements for women who are getting married is a tetanus shot or tetanus toxoid. TT injections are also know...'
-						}
-						img={
-							'https://plus.unsplash.com/premium_photo-1674499074711-be3eaadc49c9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aW5qZWN0aW9ufGVufDB8fDB8fHww'
-						}
-						date={randomDate}
-						href={'/news/1'}
-					/>
-					<NewsCard
-						title={
-							'Cases of Diabetes Mellitus in Children Soared Sharply!'
-						}
-						description={
-							'According to WHO, the frequency of diabetes mellitus worldwide is increasing.Based on research results, children are atm...'
-						}
-						img={
-							'https://plus.unsplash.com/premium_photo-1661780250041-86c3331cef25?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8ZGlhYmV0ZXMlMjB0ZXN0fGVufDB8fDB8fHww'
-						}
-						date={randomDate}
-						href={'/news/1'}
-					/>
-				</div>
+				
 			</div>
 			<div
 				id="team"
