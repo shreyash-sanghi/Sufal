@@ -6,7 +6,6 @@ import { GrUserExpert } from "react-icons/gr";
 import team1 from '../assets/team1.png';
 import team2 from '../assets/team2.png';
 import Footer from '../components/Footer';
-import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
 import {
 	IoLogoInstagram,
@@ -489,6 +488,7 @@ const Home = () => {
 					setApi={setApi}
 					className="w-full"
 				>
+					{console.log(process.env.REACT_APP_PRESET_NAME)}
 					<CarouselContent className="w-full  mx-auto py-5">
 						{/* <CarouselItem className="px-5 mx-auto basic-0  md:basis-1/2 lg:basis-1/3">
 							<EventCard
