@@ -601,6 +601,7 @@ It was great to be at the art gallery On the occasion of Mother's Day!🤗</p>
 					setApi={setApi}
 					className="w-full"
 				>
+					{console.log(process.env.REACT_APP_PRESET_NAME)}
 					<CarouselContent className="w-full  mx-auto py-5">
 						{/* <CarouselItem className="px-5 mx-auto basic-0  md:basis-1/2 lg:basis-1/3">
 							<EventCard

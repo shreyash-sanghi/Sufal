@@ -76,7 +76,12 @@ const AddEvent = () => {
         alert("Please Uplode image...")
         return;
       }
-      const res = await axios.post(`https://api.cloudinary.com/v1_1/${cloudname}/image/upload`, data);
+      const res = await axios.post(`https://api.cloudinary.com/v1_1/${cloudname}/image/upload`, data,{
+        headers: {
+        'Content-Type': 'multipart/form-data'
+        }
+        });
+      console.log(res);
       const public_id = res.data.public_id;
       const EventBannerurl = res.data.url;
       const response = await axios.post("http://localhost:7000/uplodeEventData"
