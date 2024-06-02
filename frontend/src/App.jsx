@@ -20,15 +20,20 @@ import CreateTeam from './components/Dashboard/CreateTeam';
 import MyTeam from './components/Dashboard/Myteam';
 import EditProfile from './components/Dashboard/EditProfile';
 import Events from './page/Events';
+import { useTranslation } from 'react-i18next';
+import Volunteer from './page/Volunteer.jsx';
+import LanguageSelector from './components/LanguageSelector.jsx';
+import OurTeam from './page/OurTeam.jsx';
 const App = () => {
-	return (
+	const {t} = useTranslation();
+	return ( 
 		<BrowserRouter>
 			<div className="w-full h-full min-h-screen flex flex-col bg-[#fefaf6] text-[#16191E]">
-				{/* <Header />	 */}
+			{/* <LanguageSelector></LanguageSelector> */}
 				<main className="flex-1 w-full">
 					<AppRouter />
 				</main>
-				{/* <Footer /> */}
+				
 			</div>
 		</BrowserRouter>
 	);
@@ -65,15 +70,15 @@ export const AppRouter = () => {
 			/>
 			<Route
 				path="/volunteer"
-				element={<span>Volunteer</span>}
+				element={<Volunteer/>}
 			/>
 			<Route
 				path="/contact-us"
 				element={<ContactUs />}
 			/>
 			<Route
-				path="/support-us"
-				element={<SupportUs />}
+				path="/our-team"
+				element={<OurTeam />}
 			/>
 			<Route
 				path="/uplode_event_image"
