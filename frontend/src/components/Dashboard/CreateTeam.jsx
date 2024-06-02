@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import DashboardNav from './DashboardNav';
 import axios from 'axios';
-import User_profile from "../../assets/user_profile.jpg"
+import User_profile from "../../assets/user_profile.jpg";
+import { imageDb } from "../Config.js";
+import { ref, uploadBytes ,getStorage} from "firebase/storage"; 
+import {v4} from 'uuid';
 const MyTeam =()=>{
 
     const [initial,final] = useState({
@@ -13,27 +16,36 @@ const MyTeam =()=>{
         FBId:"",
         InstaId:"",
         Vision:"",
-        Mission:""
+        Number:"",
+        Linkdin:""
     })
     const [profile,setProfile] = useState();
 
     
     const savedata = async(e)=>{
         e.preventDefault();
-        const data = new FormData();
-        const cloudname = "djyu9nhjf";
-        data.append("file", profile);
-        data.append("upload_preset", 'mysufal');
-        data.append("cloud_name", cloudname)
+        // const data = new FormData();
+        // const cloudname = "djyu9nhjf";
+        // data.append("file", profile);
+        // data.append("upload_preset", 'mysufal');
+        // data.append("cloud_name", cloudname)
         try {
-            const res = await axios.post(`https://api.cloudinary.com/v1_1/${cloudname}/image/upload`, data);
-            const public_id = res.data.public_id;
-            const ProfilImage = res.data.url;
-            const {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission} = initial;
-            console.log(Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission)
+            // const res = await axios.post(`https://api.cloudinary.com/v1_1/${cloudname}/image/upload`, data);
+            // const public_id = res.data.public_id;
+            // const ProfilImage = res.data.url;
+            const storage = getStorage();
+            const image = `${profile.name + v4()}`;
+           const imgref = ref(storage,`files/${image}`);
+            const {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission,Number,Linkdin} = initial;
+            // console.log(Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission)
            const result = await axios.post("http://localhost:7000/save_team_data",
-            {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission,ProfilImage,public_id}
+            {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission,ProfilImage:image,Number,Linkdin}
            );
+           try {
+            uploadBytes(imgref,profile)
+          } catch (error) {
+            alert("Your Banner is not uplode")
+          }
            console.log(result);
            alert("Success");
         } catch (error) {
@@ -165,6 +177,7 @@ const MyTeam =()=>{
                         </div>
                     </div>
 
+                 
                     <div class="flex lg:flex-row md:flex-col items-center sm:flex-col xs:flex-col gap-2 justify-center w-full">
                         <div class="w-full  mb-4 mt-6">
                             <label for="" class="mb-2  font-semibold text-gray-300">Vision</label>
@@ -181,6 +194,24 @@ const MyTeam =()=>{
                             onChange={setdata}
                                     class="mt-2 p-2 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                                     placeholder="Last Name"/>
+                        </div>
+                    </div>
+                    <div class="flex lg:flex-row md:flex-col items-center sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                        <div class="w-full  mb-4 mt-6">
+                            <label for="" class="mb-2  font-semibold text-gray-300">Mobile Number</label>
+                            <input type="number"
+                            onChange={setdata}
+                            name='Number'
+                                    class="mt-2 p-2 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                    placeholder="1234567890"/>
+                        </div>
+                        <div class="w-full  mb-4 lg:mt-6">
+                            <label for="" class=" mb-2  font-semibold text-gray-300">Linkdin Id</label>
+                            <input type="text"
+                            name='Linkdin'
+                            onChange={setdata}
+                                    class="mt-2 p-2 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                    placeholder="Linkdin"/>
                         </div>
                     </div>
                     <div class="flex lg:flex-row md:flex-col items-center sm:flex-col xs:flex-col gap-2 justify-center w-full">

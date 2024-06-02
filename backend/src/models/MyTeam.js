@@ -11,8 +11,8 @@ const Team = new mongoose.Schema({
     Vision:{type:String,required:true},
     Mission:{type:String,required:true},
     ProfilImage:{type:String,required:true},
-    public_id:{type:String,required:true},
-    
+    Number:{type:String,required:true},
+    Linkdin:{type:String,required:true},
 })
 
 const Myteam = mongoose.model("Myteam",Team);  

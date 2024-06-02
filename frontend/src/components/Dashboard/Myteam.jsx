@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import DashboardNav from "./DashboardNav";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import {ref,getStorage ,getDownloadURL,deleteObject} from "firebase/storage";
 const Myteam =()=>{
   const navigate = useNavigate();
 const [initila,final] = useState([
@@ -14,7 +15,7 @@ const [initila,final] = useState([
     Vision:"",
     Mission:"",
     ProfilImage:"",
-    public_id:""
+    ImageName:""
 }
 ])
 const getdata = async()=>{
@@ -22,6 +23,9 @@ const getdata = async()=>{
   const result = await axios.get("http://localhost:7000/get_team_data");
     const data = result.data.result;
     data.map((response)=>{
+      const storage = getStorage();
+      const imgref = ref(storage,`files/${response.ProfilImage}`);
+      getDownloadURL(imgref).then((url) => { 
       final((info)=>[
           ...info,{
             tid:response._id,
@@ -31,10 +35,11 @@ const getdata = async()=>{
             About:response.About,
             Vision:response.Vision,
             Mission:response.Mission,        
-            ProfilImage:response.ProfilImage,        
-            public_id:response.public_id,        
+            ProfilImage:url,        
+            ImageName:response.ProfilImage,        
          }
       ])
+    })
     })
   }catch(error){
     console.log(error);
@@ -75,7 +80,7 @@ getdata();
                               return (<>
                                 <tbody class="text-gray-600 dark:text-gray-100">
                                   <tr>
-                                    <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100"><img src={data.ProfilImage} width="70px" className='rounded-full' height="70px"/>
+                                    <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100"><img src={data.ProfilImage} width="70px"  height="70px" className='rounded-full object-cover' />
                                     </td>
                                     <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Name}</td>
                                     <td class="sm:p-3 py-2 px-1 border-b border-gray-200 dark:border-gray-800 text-gray-100">{data.Position}</td>
@@ -104,7 +109,10 @@ getdata();
                                             const res = confirm("You have confirm to delete...");
                                             if (res) {
                                                 try {
-                                                    const response = await axios.delete(`http://localhost:7000/delete_team_member/${data.tid}`,{public_id:data.public_id});
+                                                    const response = await axios.delete(`http://localhost:7000/delete_team_member/${data.tid}`);
+                                                    const storage = getStorage();
+                                                    const desertRef = ref(storage,`files/${data.ImageName}`);
+                                                   await deleteObject(desertRef)
                                                     final((info) =>
                                                         info.filter((about) => about.tid != data.tid)
                                                     );

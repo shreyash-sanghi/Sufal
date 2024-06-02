@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import DashboardNav from './DashboardNav';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import {ref,uploadBytes,getStorage ,getDownloadURL,deleteObject} from "firebase/storage";
+
 const MyTeam =()=>{
      const {id} = useParams();
     const [initial,final] = useState({
@@ -16,6 +18,9 @@ const MyTeam =()=>{
         Mission:"",
         public_id:"",
         image:"",
+        imageName:"",
+        Number:"",
+        Linkdin:""
     })
 
     const [profile,setProfile] = useState();
@@ -28,33 +33,43 @@ const MyTeam =()=>{
         // data.append("file", profile);
         // data.append("upload_preset", 'mysufal');
         // data.append("cloud_name", cloudname)
-        // try {
-        //     if(profile === undefined){
-        //         const {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission} = initial;
-        //         console.log(Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission)
-        //        const result = await axios.post(`http://localhost:7000/update_team_data/${id}`,
-        //         {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission}
-        //        );
-        //        console.log(result);
+        try {
+            if(profile === undefined){
+                const {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission,Number, Linkdin} = initial;
+                console.log(Gender)
+               const result = await axios.post(`http://localhost:7000/update_team_data/${id}`,
+                {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission,Number, Linkdin}
+               );
+               console.log(result);
               
-        //     }
-        //     else{
-        //         const deleteImage = await axios.delete(`htpp://localhost:7000/delete_previous_image/${initial.public_id}`);
-        //         const res = await axios.post(`https://api.cloudinary.com/v1_1/${cloudname}/image/upload`, data);
-        //        const public_id = res.data.public_id;
-        //        const ProfilImage = res.data.url;
-        //        const {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission} = initial;
-        //        console.log(Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission)
-        //       const result = await axios.post(`http://localhost:7000/update_team_data/${id}`,
-        //        {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission,ProfilImage,public_id}
-        //       );
-        //       console.log(result);
-        //      }
-        //    alert("Success");
-        // } catch (error) {
-        //     alert(error);
-        //     console.log(error);
-        // }
+            }
+            else{
+                // const deleteImage = await axios.delete(`htpp://localhost:7000/delete_previous_image/${initial.public_id}`);
+                const storage = getStorage();
+                const desertRef = ref(storage,`files/${initial.imageName}`);
+               await deleteObject(desertRef)
+            //     const res = await axios.post(`https://api.cloudinary.com/v1_1/${cloudname}/image/upload`, data);
+            //    const public_id = res.data.public_id;
+            //    const ProfilImage = res.data.url;
+               const {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission,Number, Linkdin} = initial;
+               const image = `${profile.name + v4()}`;
+               const imgref = ref(storage,`files/${image}`);
+               console.log(Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission)
+              const result = await axios.post(`http://localhost:7000/update_team_data/${id}`,
+               {Name,Position,Gender,DOB,About,FBId,InstaId,Vision,Mission,ProfilImage:image,Number, Linkdin}
+              );
+              try {
+                uploadBytes(imgref,profile)
+              } catch (error) {
+                alert("Your Banner is not uplode")
+              }
+              console.log(result);
+             }
+           alert("Success");
+        } catch (error) {
+            alert(error);
+            console.log(error);
+        }
     }
     const setdata =(e)=>{
      const {name,value} = e.target;
@@ -70,6 +85,9 @@ const MyTeam =()=>{
         try{
         const result = await axios.get(`http://localhost:7000/get_team_data_byid/${id}`);
           const response = result.data.result;
+          const storage = getStorage();
+          const imgref = ref(storage,`files/${response.ProfilImage}`);
+          getDownloadURL(imgref).then((url) => { 
                  final({
                   Name : response.Name,
                   Position : response.Position,
@@ -81,9 +99,12 @@ const MyTeam =()=>{
                   Vision : response.Vision,         
                   Mission : response.Mission,         
                   public_id : response.public_id,         
-                  image : response.ProfilImage,         
+                  image : url,         
+                  imageName : response.ProfilImage,         
+                  Number : response.Number,         
+                  Linkdin : response.Linkdin,         
           })
-      
+        })
         }catch(error){
           console.log(error);
           alert(error);
@@ -105,10 +126,11 @@ useEffect(()=>{
             <div class=" flex flex-col justify-between w-full ">
                 <form onSubmit={savedata} method='POST'>
                     {/* <!-- Cover Image --> */}
+                    {console.log(initial.image)}
                     <div
                         class="w-full rounded-sm bg-cover bg-center bg-no-repeat items-center">
                         {/* <!-- Profile Image -->{console.log(URL.createObjectURL(profile))} */}
-                        {( profile === undefined ) ? (<>
+                        {(profile === undefined) ? (<>
                             <div
                             class={`mx-auto flex justify-center w-[130px] h-[130px] bg-blue-300/20 rounded-full bg-cover bg-center bg-no-repeat`}
                             style={{ backgroundImage: `url(${initial.image})` }}                       
@@ -117,7 +139,8 @@ useEffect(()=>{
               </a>
                             <div class="bg-white/90 rounded-full w-6 h-6 text-center ml-28 mt-4">
 
-                            {/* <input onChange={(e)=>setProfile(e.target.files[0])} type="file" name="profile" id="upload_profile" hidden required/> */}
+                                {/* <input onChange={(e)=>setProfile(e.target.files[0])} type="file" id="upload_profile" hidden required/> */}
+                                {/* <input onChange={(e)=>setProfile(e.target.files[0])} type="file" name="profile" id="upload_profile" hidden required/> */}
 
                                 <label for="upload_profile">
                                         <svg data-slot="icon" class="w-6 h-5 text-blue-700" fill="none"
@@ -132,9 +155,10 @@ useEffect(()=>{
                                         </svg>
                                     </label>
                             </div>
-                        </div>           
-                           </>):(<>
+                        </div>                </>) : (<>
                             <div
+                            // class={`mx-auto flex justify-center w-[130px] h-[130px] bg-blue-300/20 rounded-full bg-[url(${URL.createObjectURL(profile)})] bg-cover bg-center bg-no-repeat`}
+                            // class={`mx-auto flex justify-center w-[130px] h-[130px] bg-blue-300/20 rounded-full bg-[url()] bg-cover bg-center bg-no-repeat`}
                             class={`mx-auto flex justify-center w-[130px] h-[130px] bg-blue-300/20 rounded-full bg-cover bg-center bg-no-repeat`}
                             style={{ backgroundImage: `url(${URL.createObjectURL(profile)})` }}                       
                             >
@@ -143,7 +167,8 @@ useEffect(()=>{
               </a>
                             <div class="bg-white/90 rounded-full w-6 h-6 text-center ml-28 mt-4">
 
-                            {/* <input onChange={(e)=>setProfile(e.target.files[0])} type="file" name="profile" id="upload_profile" hidden required/> */}
+                                {/* <input onChange={(e)=>setProfile(e.target.files[0])} type="file"  id="upload_profile" hidden required/> */}
+                                {/* <input onChange={(e)=>setProfile(e.target.files[0])} type="file" name="profile" id="upload_profile" hidden required/> */}
 
                                 <label for="upload_profile">
                                         <svg data-slot="icon" class="w-6 h-5 text-blue-700" fill="none"
@@ -158,8 +183,7 @@ useEffect(()=>{
                                         </svg>
                                     </label>
                             </div>
-                        </div>  
-                           </>)}
+                        </div>                </>)}
                    
                         <div class="flex justify-end">
                             {/* <!--  --> */}
@@ -225,6 +249,27 @@ useEffect(()=>{
                             <input type="text"
                             name='Mission'
                             value={initial.Mission}
+                            onChange={setdata}
+                                    class="mt-2 p-2 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                    placeholder="Last Name"/>
+                        </div>
+                    </div>
+
+                    <div class="flex lg:flex-row md:flex-col items-center sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                        <div class="w-full  mb-4 mt-6">
+                            <label for="" class="mb-2  font-semibold text-gray-300">Number</label>
+                            <input type="text"
+                            value={initial.Number}
+                            onChange={setdata}
+                            name='Vision'
+                                    class="mt-2 p-2 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                    placeholder="Vision"/>
+                        </div>
+                        <div class="w-full  mb-4 lg:mt-6">
+                            <label for="" class=" mb-2  font-semibold text-gray-300">Linkdin</label>
+                            <input type="text"
+                            name='Mission'
+                            value={initial.Linkdin}
                             onChange={setdata}
                                     class="mt-2 p-2 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                                     placeholder="Last Name"/>

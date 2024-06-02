@@ -3,12 +3,12 @@ import { getFirestore } from "firebase/firestore";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBmI2Pv5jaGnXNyBEDc6i7OL13ZAV1H7uA",
-  authDomain: "sufal-67df7.firebaseapp.com",
-  projectId: "sufal-67df7",
-  storageBucket: "sufal-67df7.appspot.com",
-  messagingSenderId: "942392091366",
-  appId: "1:942392091366:web:98a274eb97870778191127"
+  apiKey: "AIzaSyAEiOopbsqguOU1dh2msz6CYk6bRGMFy9w",
+  authDomain: "sufal-d8a4c.firebaseapp.com",
+  projectId: "sufal-d8a4c",
+  storageBucket: "sufal-d8a4c.appspot.com",
+  messagingSenderId: "460921888630",
+  appId: "1:460921888630:web:5bd9775b9626f3981fe457"
 };
 
 const app = initializeApp(firebaseConfig);

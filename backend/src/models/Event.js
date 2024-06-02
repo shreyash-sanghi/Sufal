@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const Events = new mongoose.Schema({
-    Title:{type:String,required:true},
     Organization:{type:String,required:true},
     Duration:{type:String,required:true},
     Fee:{type:String,required:true},
@@ -13,7 +12,6 @@ const Events = new mongoose.Schema({
     EventBanner:{type:String,required:true},
     CurrentConform:{type:Boolean,required:true},
     PastConform:{type:Boolean,required:true},    
-    public_id:{type:String,required:true},     
 })
 
 

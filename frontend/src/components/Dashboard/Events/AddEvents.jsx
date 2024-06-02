@@ -2,10 +2,12 @@ import React, { useState, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import DashboardNav from "../DashboardNav";
-
-
+import { imageDb } from "../../Config.js";
+import { ref, uploadBytes ,getStorage} from "firebase/storage"; 
+import {v4} from 'uuid';
 const AddEvent = () => {
   const navigate = useNavigate();
+  const form = useRef();
   const [initialAddEvent, finalAddEvent] = useState({
     EventName: "",
     Discreption: "",
@@ -40,11 +42,11 @@ const AddEvent = () => {
   }
   const EventSave = async (event) => {
     event.preventDefault();
-    const data = new FormData();
-    const cloudname = "djyu9nhjf";
-    data.append("file", initialAddEventfile);
-    data.append("upload_preset", 'mysufal');
-    data.append("cloud_name", cloudname)
+    // const data = new FormData();
+    // const cloudname = "djyu9nhjf";
+    // data.append("file", initialAddEventfile);
+    // data.append("upload_preset", 'mysufal');
+    // data.append("cloud_name", cloudname)
 
     //Date
     let EDate = initialAddEvent.EDate;
@@ -71,22 +73,30 @@ const AddEvent = () => {
     }
 
     try {
-      const { EventName, Discreption, Place, Time ,Title,Organization,Duration,Fee} = initialAddEvent;
+      const { EventName, Discreption, Place, Time ,Organization,Duration,Fee} = initialAddEvent;
       if (initialAddEventfile === null || initialAddEventfile === undefined) {
         alert("Please Uplode image...")
         return;
       }
-      const res = await axios.post(`https://api.cloudinary.com/v1_1/${cloudname}/image/upload`, data,{
-        headers: {
-        'Content-Type': 'multipart/form-data'
-        }
-        });
-      console.log(res);
-      const public_id = res.data.public_id;
-      const EventBannerurl = res.data.url;
+      // try{
+      //   const res = await axios.post(`https://api.cloudinary.com/v1_1/${cloudname}/image/upload`, data);
+      // }catch(error){
+      //   alert(error+" in cloudinary...")
+      // }
+      const storage = getStorage();
+      const image = `${initialAddEventfile.name + v4()}`;
+     const imgref = ref(storage,`files/${image}`);
+     
+      // console.log(res);
+      // const public_id = res.data.public_id;
+      // const EventBannerurl = res.data.url;
       const response = await axios.post("http://localhost:7000/uplodeEventData"
-        , { Title,Organization,Duration,Fee,EventName, Discreption, public_id, Place, EDate: date, Time, EventBanner: EventBannerurl, CurrentConform, PastConform })
-      alert("Success...")
+        , { Organization,Duration,Fee,EventName, Discreption, Place, EDate: date, Time, EventBanner: image, CurrentConform, PastConform })
+        try {
+          uploadBytes(imgref,initialAddEventfile)
+        } catch (error) {
+          alert("Your Banner is not uplode")
+        }
       finalAddEvent({
         EventName: "",
         Discreption: "",
@@ -95,6 +105,7 @@ const AddEvent = () => {
         Time: "",
       })
       finalAddEventfile();
+      alert("success")
     } catch (error) {
       alert(error);
       console.log(error)
@@ -116,6 +127,7 @@ const AddEvent = () => {
             <form
               className="px-8 py-16 event-form text-lg w-full lg:w-[65%]  text-white"
               onSubmit={EventSave}
+              ref={form}
               id="form"
             >
               <div className="md:relative  z-0 w-full mb-8 group">
@@ -170,55 +182,29 @@ const AddEvent = () => {
                   Venue
                 </label>
               </div>
-              <div className="md:grid md:grid-cols-2 mb-8 md:gap-6">
-                <div className="md:relative z-0 w-full mb-6 group">
-                <label
+              <div className="md:relative z-0 my-5  w-full mb-8 group">
+              <label
                   for="floating_date"
                   className="peer-focus:font-medium block md:hidden     "
                 >
-              Event Title
+               Organization Name
                 </label>
-                  <input
-                    type="text"
-                    name="Title"
-                    value={initialAddEvent.Title}
-                    onChange={EventData}
-                    autoComplete="off"
-                    id="floating_first_name"
-                    className="event-input block py-1.5 px-0 w-full   bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                  />
-                  <label
-                    for="floating_first_name"
-                    className="peer-focus:font-medium hidden md:block absolute  duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Event Title
-                  </label>
-                </div>
-                <div className="md:relative z-0 w-full md:mb-6 group">
+                <input
+                 type="text"
+                 name="Organization"
+                 value={initialAddEvent.Organization}
+                 onChange={EventData}
+                 autoComplete="off"
+                  id="floating_repeat_password"
+                  className="event-input block py-1.5 px-0 w-full   bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                  placeholder=" "
+                />
                 <label
-                  for="floating_date"
-                  className="peer-focus:font-medium block md:hidden     "
+                  for="floating_repeat_password"
+                  className="peer-focus:font-medium hidden md:block    absolute   duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                 >
-            Organization Name
+                  Organization Name
                 </label>
-                  <input
-                    type="text"
-                    name="Organization"
-                    value={initialAddEvent.Organization}
-                    onChange={EventData}
-                    autoComplete="off"
-                    id="floating_last_name"
-                    className="event-input block py-1.5 px-0 w-full   bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                    placeholder=" "
-                  />
-                  <label
-                    for="floating_last_name"
-                    className="peer-focus:font-medium hidden md:absolute  duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                  >
-                    Organization Name
-                  </label>
-                </div>
               </div>
               <div className="md:grid md:grid-cols-2 mb-8 md:gap-6">
                 <div className="md:relative z-0 w-full mb-6 group">
@@ -380,7 +366,13 @@ const AddEvent = () => {
             </form>
 
             <div class="hidden lg:block w-[30%] h-fit ml-5  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-+
+              <a href="#">
+                {(initialAddEventfile === undefined) ? (<>
+                  <img class="rounded-t-lg object-cover w-full h-[35vh]" src="https://images.unsplash.com/photo-1540553016722-983e48a2cd10?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="" />
+                </>) : (<>
+                  <img class="rounded-t-lg object-cover w-full h-[35vh]" src={URL.createObjectURL(initialAddEventfile)} alt="" />
+                </>)}
+              </a>
               <div class="p-5">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-100 dark:text-white">{initialAddEvent.EventName}</h5>
                 <div className="flex font-semibold items-center gap-5 text-white my-3">

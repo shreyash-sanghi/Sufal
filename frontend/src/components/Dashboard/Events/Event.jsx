@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import DashboardNav from "../DashboardNav";
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import {ref,uploadBytes,getStorage ,getDownloadURL,deleteObject} from "firebase/storage";
+
+
 const CurrentEvent = () => {
   const { kind_of_event, rid } = useParams();
   const navigate = useNavigate();
@@ -17,7 +20,7 @@ const CurrentEvent = () => {
     PastConform: "",
     CurrentConform: "",
     Discreption: "",
-    image_key: "",
+    ImageName: "",
     RegisterData: [],
     RegisterForm: []
   }])
@@ -68,8 +71,13 @@ const CurrentEvent = () => {
         console.log(info)
         let EventDate = info.EDate;
         const isDate1AfterDate = compareDates(todaydate, EventDate);
+        const storage = getStorage();
+        const imgref = ref(storage,`files/${info.EventBanner}`);
+        getDownloadURL(imgref).then(async(url) => {
+          // conosle.log(url)
         if (isDate1AfterDate && info.PastConform == false) {
           await axios.post(`http://localhost:7000/send_to_past_event/${info._id}`);
+     
           final((about) => [
             ...about, {
               eid: info._id,
@@ -77,11 +85,11 @@ const CurrentEvent = () => {
               Place: info.Place,
               Time: info.Time,
               EDate: info.EDate,
-              EventBanner: info.EventBanner,
+              EventBanner: url,
               PastConform: true,
               CurrentConform: false,
               Discreption: info.Discreption,
-              image_key: info.public_id,
+              ImageName: info.EventBanner,
               RegisterData: info.RegisterData,
               RegisterForm: info.Formfields
             }
@@ -94,17 +102,18 @@ const CurrentEvent = () => {
               Place: info.Place,
               Time: info.Time,
               EDate: info.EDate,
-              EventBanner: info.EventBanner,
+             EventBanner: url,
               PastConform: info.PastConform,
               CurrentConform: info.CurrentConform,
               Discreption: info.Discreption,
-              image_key: info.public_id,
+               ImageName: info.EventBanner,
               RegisterData: info.RegisterData,
               RegisterForm: info.Formfields
             }
           ])
         }
       })
+    })
     } catch (error) {
       console.log(error);
       alert(error);
@@ -164,7 +173,7 @@ const CurrentEvent = () => {
                                         const res = confirm("You have confirm to delete request ");
                                         if (res) {
                                           try {
-
+                
                                             const response = await axios.post(`http://localhost:7000/send_to_past_event/${data.eid}`);
                                             getdata();
                                             final((info) =>
@@ -202,7 +211,6 @@ const CurrentEvent = () => {
                               </tr>
                             </thead>
                             {initial.map((data, index) => {
-                              console.log(data);
                               if (!data.eid) return null;
                               return (<>
                                 <tbody class="text-gray-600 dark:text-gray-100">
@@ -299,6 +307,9 @@ const CurrentEvent = () => {
                                                   const res = confirm("You have confirm to delete request ");
                                                   if (res) {
                                                       try {
+                                                      //   const storage = getStorage();
+                                                      //   const desertRef = ref(storage,`files/${data.ImageName}`);
+                                                      //  await deleteObject(desertRef)
                                                           const response = await axios.delete(`http://localhost:7000/delete_event/${data.eid}`);
                                                           final((info) =>
                                                               info.filter((about) => about.eid != data.eid)

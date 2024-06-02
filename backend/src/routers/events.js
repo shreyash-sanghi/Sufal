@@ -24,9 +24,9 @@ router.get("/get_current_event_data",async(req,res)=>{
 
   router.post("/uplodeEventData",async(req,res)=>{
     try {
-       const {Title,Organization,Duration,Fee,EventName,public_id, Discreption, Place, EDate,Time,EventBanner,CurrentConform,PastConform} = req.body;
+       const {Organization,Duration,Fee,EventName,Discreption, Place, EDate,Time,EventBanner,CurrentConform,PastConform} = req.body;
        const result = await Current.create({
-         Title,Organization,Duration,Fee, EventName,Discreption,public_id, Place, EDate,Time,EventBanner,CurrentConform,PastConform
+         Organization,Duration,Fee, EventName,Discreption, Place, EDate,Time,EventBanner,CurrentConform,PastConform
        })
        res.sendStatus(202);
     } catch (error) {
