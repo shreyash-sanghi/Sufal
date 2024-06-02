@@ -7,6 +7,11 @@ import team1 from '../assets/team1.png';
 import team2 from '../assets/team2.png';
 import Footer from '../components/Footer';
 import { useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import Glimpses from '../components/Glimpses';
+import mothers from '../assets/mothers.mp4';
+>>>>>>> cc54d206aafb6a81e57fa7804bd5b44922aa0ea7
 import {
 	IoLogoInstagram,
 	IoLogoLinkedin,
@@ -461,6 +466,87 @@ final_length(initial.length);
 					/>
 				</div>
 			</div>
+
+			<main className="flex py-6 lg:py-10 pt-4 bg-white  flex-1 w-full flex-col items-center justify-center text-center md:text-start px-4 sm:mt-12 mt-20">
+        <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal sm:text-5xl">
+          Our
+          <span className="relative whitespace-nowrap text-pink-700">
+            <svg
+              aria-hidden="true"
+              viewBox="0 0 418 42"
+              className="absolute top-2/3 left-0 h-[0.58em] w-full fill-yellow-300/90"
+              preserveAspectRatio="none"
+            >
+              <path d="M203.371.916c-26.013-2.078-76.686 1.963-124.73 9.946L67.3 12.749C35.421 18.062 18.2 21.766 6.004 25.934 1.244 27.561.828 27.778.874 28.61c.07 1.214.828 1.121 9.595-1.176 9.072-2.377 17.15-3.92 39.246-7.496C123.565 7.986 157.869 4.492 195.942 5.046c7.461.108 19.25 1.696 19.17 2.582-.107 1.183-7.874 4.31-25.75 10.366-21.992 7.45-35.43 12.534-36.701 13.884-2.173 2.308-.202 4.407 4.442 4.734 2.654.187 3.263.157 15.593-.78 35.401-2.686 57.944-3.488 88.365-3.143 46.327.526 75.721 2.23 130.788 7.584 19.787 1.924 20.814 1.98 24.557 1.332l.066-.011c1.201-.203 1.53-1.825.399-2.335-2.911-1.31-4.893-1.604-22.048-3.261-57.509-5.556-87.871-7.36-132.059-7.842-23.239-.254-33.617-.116-50.627.674-11.629.54-42.371 2.494-46.696 2.967-2.359.259 8.133-3.625 26.504-9.81 23.239-7.825 27.934-10.149 28.304-14.005.417-4.348-3.529-6-16.878-7.066Z"></path>
+            </svg>
+            <span className="relative ml-4">Memories</span>
+          </span>
+        </h1>
+      </main>
+    <section class=" overflow-hidden bg-white">
+  <div class="container px-2 md:px-6 sm:px-0 py-12 mx-auto">
+    <div class="lg:w-4/5 mx-auto flex flex-wrap justify-center text-center md:text-start">
+      <video alt="ecommerce" playsInline={true} autoPlay={false} loop={true} controls={true} class=" md:w-4/5 lg:w-1/2 mx-4 md:mx-0 w-full lg:h-80 h-64 object-contain object-center rounded" src={mothers}></video>
+      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 px-4 md:px-20 mt-6 lg:mt-0">
+        <h2 class="text-sm title-font mb-2 text-gray-500 tracking-widest">Initiative By Dr. Priya Bhave</h2>
+        <h1 class="text-3xl title-font font-medium mb-1">Mamta Exhibition</h1>
+        <div class="flex mb-4 justify-center md:justify-start">
+          <span class="flex items-center">
+            <svg fill="yellow" stroke="purple" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+            <svg fill="yellow" stroke="purple" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+            <svg fill="yellow" stroke="purple" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+            <svg fill="yellow" stroke="purple" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+            <svg fill="yellow" stroke="purple" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-4 h-4 text-indigo-500" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+            <span class="text-gray-400 ml-3">5 Star Reviews</span>
+          </span>
+          <span class="flex ml-3 pl-3 py-2 border-l-2 border-gray-200 space-x-2s">
+            <a class="text-gray-500">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+              </svg>
+            </a>
+            <a class="text-gray-500">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+              </svg>
+            </a>
+            <a class="text-gray-500">
+              <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+              </svg>
+            </a>
+          </span>
+        </div>
+        <p class="">We are here because of our mothers, and what better day to celebrate this than Mother's Day ?
+Mamta : 
+the essence of motherhood!
+It was great to be at the art gallery On the occasion of Mother's Day!🤗</p>
+        <div class="flex mt-6 items-center pb-0 border-b-2 border-gray-100 mb-5">
+          
+    
+        </div>
+        <div class="flex justify-center md:justify-start">
+          <span class="title-font font-medium text-2xl text-gray-500">You Loved It Right !!!</span>
+          <button class="rounded-full w-8 h-8 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-blue-500 ml-4">
+            <svg fill="red" stroke-linecap="violet" stroke-linejoin="violet" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
+              <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 			{/* <div className="max-w-7xl mx-auto px-5 pt-6 flex flex-col items-start justify-start selection:bg-[#7fe0c662] gap-5">
 				
 
@@ -506,7 +592,40 @@ final_length(initial.length);
 				
 			</div> */}
 			{/*  */}
+<<<<<<< HEAD
 			{(initial_length>1)?(<>
+=======
+
+			<section class="text-gray-600">
+  <div class="container mx-auto flex px-5 lg:px-24 py-10 md:py-20 md:flex-row flex-col items-center">
+  <div class="lg:max-w-sm lg:w-full md:w-1/2 w-5/6">
+      <img class="object-cover object-center rounded" alt="hero" src="https://palavigarbhasanskar.com/wp-content/uploads/2024/02/vector-952x1024.png"/>
+    </div>
+    <div class="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left mt-10 md:mt-0 items-center text-center">
+      <h1 class="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Understanding <span className='text-yellow-700'> Garbhasanskar</span>
+    
+      </h1>
+	  <div className='flex mb-4'>
+		<img src="https://cdn-icons-png.freepik.com/256/1414/1414254.png?semt=ais_hybrid" className='size-10 rounded-full' alt="" />
+		<img src="https://img.freepik.com/premium-photo/cute-woman-meditation-yoga-cartoon-vector-icon-illustration-people-sport-icon-concept-isolated-flat_839035-1015803.jpg" className='size-10 -ml-4 rounded-full' alt="" />
+		<img src="https://cdn-icons-png.freepik.com/512/2906/2906476.png" className='size-10 rounded-full -ml-4' alt="" />
+		<img src="https://cdn-icons-png.freepik.com/512/5001/5001175.png" className='size-10 rounded-full -ml-4' alt="" />
+		<img src="https://images.onlymyhealth.com/imported/images/2020/April/25_Apr_2020/big_14-Color-Tharepy.jpg" className='size-10 rounded-full -ml-4' alt="" />
+		<img src="https://thumbs.dreamstime.com/b/girl-listens-to-music-headphones-therapy-podcast-audiobook-radio-meditation-concept-profile-young-african-woman-vector-288627719.jpg" className='size-10 rounded-full -ml-4' alt="" />
+	  </div>
+      <p class="mb-8 leading-tight">Garbhasanskar is an ancient Indian practice that focuses on nurturing and educating the unborn child. The term "Garbhasanskar" is derived from two Sanskrit words: "Garbha" meaning "womb" and "Sanskar" meaning "ethics" or "values." It refers to a set of practices and rituals aimed at ensuring the physical, mental, and spiritual well-being of both the mother and the baby during pregnancy.</p>
+      <div class="flex justify-center">
+        <button class="inline-flex text-white bg-pink-500 border-0 py-2 px-4 focus:outline-none hover:bg-indigo-600 rounded text-sm">Explore</button>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+			<Glimpses></Glimpses>
+			
+			
+>>>>>>> cc54d206aafb6a81e57fa7804bd5b44922aa0ea7
 			<div
 				id="upcoming-events"
 				className="w-full max-w-7xl mx-auto px-3 pt-14 pb-16"
